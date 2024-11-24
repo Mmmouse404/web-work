@@ -1,4 +1,1 @@
-# javaweb_qimo
-小卖部购物网站
-
-项目技术：jsp+servlet+jquery
+网络应用开发实验-购物网站实现
