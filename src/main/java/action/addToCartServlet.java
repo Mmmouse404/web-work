@@ -21,7 +21,7 @@ public class addToCartServlet extends HttpServlet {
         String address = request.getParameter("address");
         String numberStr = request.getParameter("number");
         String price = request.getParameter("price");
-        String merchantName = request.getParameter("merchantName");
+        String merchantname = request.getParameter("merchantname");
 
         int number;
         try {
@@ -44,7 +44,7 @@ public class addToCartServlet extends HttpServlet {
         cartItem.setAddress(address);
         cartItem.setNumber(number);
         cartItem.setPrice(price);
-        cartItem.setMerchantName(merchantName); // Set merchantName
+        cartItem.setmerchantname(merchantname); // Set merchantname
 
         try {
             Cart_Use.addToCart(cartItem); // 将商品添加到购物车

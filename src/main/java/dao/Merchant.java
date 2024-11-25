@@ -2,7 +2,7 @@ package dao;
 
 public class Merchant {
     private int id;           // 商家ID
-    private String merchantName; // 商家名称
+    private String merchantname; // 商家名称
     private String password;  // 密码
 
     public int getId() {
@@ -13,12 +13,12 @@ public class Merchant {
         this.id = id;
     }
 
-    public String getMerchantName() {
-        return merchantName;
+    public String getmerchantname() {
+        return merchantname;
     }
 
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
+    public void setmerchantname(String merchantname) {
+        this.merchantname = merchantname;
     }
 
     public String getPassword() {

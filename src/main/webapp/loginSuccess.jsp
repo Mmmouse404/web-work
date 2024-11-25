@@ -10,7 +10,7 @@
         String username = "";
 
         if ("merchant".equals(userType)) {
-            username = (String) session.getAttribute("merchantName"); // 获取商家名称
+            username = (String) session.getAttribute("merchantname"); // 获取商家名称
             out.print("商家: " + username);
         } else {
             username = (String) session.getAttribute("upname"); // 获取用户名称

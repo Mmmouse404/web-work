@@ -1,13 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>小卖部后台管理</title>
+    <title>小卖部后台管理 - 设置</title>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/manage.css"/>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script>
         $(function () {
-            //下拉菜单栏的实现 toggle():切换隐藏显示状态
             $(".sidebar-content>ul>li").click(function() {
                 $(this).children('ul').toggle();
             });
@@ -18,59 +17,9 @@
     </script>
 </head>
 <body>
-<div class="topbar-wrap white">
-    <div class="topbar-inner clearfix">
-        <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="manageUser.jsp" class="navbar-brand">后台管理</a></h1>
-            <ul class="navbar-list clearfix">
-                <li><a class="on" href="manageUser.jsp">首页</a></li>
-                <li><a href="user.jsp" target="_blank">小卖部用户登录</a></li>
-            </ul>
-        </div>
-        <div class="top-info-wrap">
-            <ul class="top-info-list clearfix">
-                <li><a href="#">管理员</a></li>
-                <li><a href="#">店长信息</a></li>
-                <li><a href="#">退出</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<jsp:include page="header.jsp" />
 <div class="container clearfix">
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <a href="#"><h1>菜单</h1></a>
-        </div>
-        <div class="sidebar-content">
-            <ul class="sidebar-list">
-                <li>
-                    <a href="#">用户管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="manageUser.jsp">用户信息</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">商品管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="manageGood.jsp">全部商品</a></li>
-                        <li><a href="insertGood.jsp">添加商品</a></li>
-                        <li><a href="manageGood.jsp">删除商品</a></li>
-                        <li><a href="manageOrder.jsp">商品订单</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">系统管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="manageSetting.jsp">系统设置</a></li>
-                        <li><a href="manageSetting.jsp">清理缓存</a></li>
-                        <li><a href="manageSetting.jsp">数据备份</a></li>
-                        <li><a href="manageSetting.jsp">数据还原</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--/sidebar-->
+    <jsp:include page="sidebar.jsp" />
     <div class="main-wrap">
         <div class="crumb-wrap">
             <div class="crumb-list"><a href="manageUser.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">系统设置</span></div>
@@ -86,19 +35,19 @@
                             <tbody>
                             <tr>
                                 <th width="15%"><i class="require-red">*</i>域名：</th>
-                                <td><input type="text" id="" value="#" size="85" name="keywords" class="common-text"></td>
+                                <td><input type="text" value="#" size="85" name="keywords" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>站点标题：</th>
-                                <td><input type="text" id="" value="小卖部" size="85" name="title" class="common-text"></td>
+                                <td><input type="text" value="小卖部" size="85" name="title" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>关键字：</th>
-                                <td><input type="text" id="" value="CSS, JavaScript, Ajax, Html5" size="85" name="keywords" class="common-text"></td>
+                                <td><input type="text" value="CSS, JavaScript, Ajax, Html5" size="85" name="keywords" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>描述：</th>
-                                <td><input type="text" id="" value="小卖部！" size="85" name="description" class="common-text"></td>
+                                <td><input type="text" value="小卖部！" size="85" name="description" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -119,28 +68,27 @@
                         <table width="100%" class="insert-tab">
                             <tr>
                                 <th width="15%"><i class="require-red">*</i>网站联系邮箱：</th>
-                                <td><input type="text" id="" value="2417983039@qq.com" size="85" name="email" class="common-text"></td>
+                                <td><input type="text" size="85" name="email" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>联系人：</th>
-                                <td><input type="text" id="" value="Chen.y.c_8002119338" size="85" name="contact" class="common-text"></td>
+                                <td><input type="text" size="85" name="contact" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>联系电话：</th>
-                                <td><input type="text" id="" value="123456" size="85" name="phone" class="common-text"></td>
+                                <td><input type="text" size="85" name="phone" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>备案ICP：</th>
-                                <td><input type="text" id="" value="我在南昌" size="85" name="icp" class="common-text"></td>
+                                <td><input type="text" size="85" name="icp" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>地址：</th>
-                                <td><input type="text" id="" value="中国 • 江西" size="85" name="address" class="common-text"></td>
+                                <td><input type="text" size="85" name="address" class="common-text"></td>
                             </tr>
                             <tr>
                                 <th></th>
                                 <td>
-                                    <input type="hidden" value="siteConf.inc.php" name="file">
                                     <input type="submit" value="提交" class="btn btn-primary btn6 mr10">
                                     <input type="button" value="返回" class="btn btn6" onclick="history.go(-1)">
                                 </td>
@@ -151,7 +99,6 @@
             </form>
         </div>
     </div>
-    <!--/main-->
 </div>
 </body>
 </html>

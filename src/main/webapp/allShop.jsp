@@ -21,13 +21,16 @@
 
 <div class="main_down">
     <table class="qtable">
-        <c:set var="shopList" value="${Shoplist_use.getShopList()}" />
-        <c:forEach items="${shopList}" var="a">
+        <c:set var="goodList" value="${Goodlist_Use.getGoodList()}" />
+        <c:forEach items="${goodList}" var="a">
             <tr>
                 <td class="center"><c:out value="${a.kind}" /></td>
                 <td class="center"><img src="<c:out value="${a.image}" />" /></td>
-                <td class="center"><c:out value="${a.name}" /></td>
+                <td class="center"><c:out value="${a.goodname}" /></td>
                 <td class="center"><c:out value="${a.price}" />元</td>
+                <td class="center"><c:out value="${a.stock}" />件</td>
+                <td class="center"><c:out value="${a.merchantname}" /></td>
+
                 <td class="center">
                     <a href="mouseShop.jsp?Sid=${a.id}">
                         <input type="button" value="购买" id="qbtn" />

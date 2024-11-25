@@ -113,10 +113,10 @@
 
         // 商家的表单验证
         function text4submit() {
-            var merchantName = document.merchantForm.merchantName;
-            if (merchantName.value == "") {
+            var merchantname = document.merchantForm.merchantname;
+            if (merchantname.value == "") {
                 alert("商家名称不能为空哦\u263a");
-                merchantName.focus();
+                merchantname.focus();
                 return false;
             }
             return true;
@@ -165,7 +165,7 @@
         <!-- 商家注册表单 -->
         <form name="merchantForm" id="merchantForm" action="merchantRegister" method="post" onsubmit="return checkform('merchant')" style="display:none;">
             <div class="inputtext"><input type="text" name="merchantID" placeholder="请输入商家账号"></div>
-            <div class="inputtext"><input type="text" name="merchantName" placeholder="请输入商家名称"></div>
+            <div class="inputtext"><input type="text" name="merchantname" placeholder="请输入商家名称"></div>
             <div class="inputtext"><input type="password" name="password" placeholder="请设置密码"></div>
             <div class="inputtext"><input type="password" name="rpassword" placeholder="请确认密码"></div>
             <input type="submit" value="注册商家" class="">

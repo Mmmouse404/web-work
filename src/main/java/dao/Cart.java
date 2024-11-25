@@ -43,8 +43,8 @@ public class Cart {
 
     public void setPrice(String price) {this.price = price;}
 
-    public String getMerchantName() {return merchantname;}
+    public String getmerchantname() {return merchantname;}
 
-    public void setMerchantName(String merchantname) {this.merchantname = merchantname;}
+    public void setmerchantname(String merchantname) {this.merchantname = merchantname;}
 
 }

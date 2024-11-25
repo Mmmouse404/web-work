@@ -26,7 +26,7 @@ public class Order_Use {
                 ss.setAddress(RS.getString("ADDRESS"));
                 ss.setNumber(RS.getInt("NUMBER"));
                 ss.setPrice(RS.getString("PRICE"));
-                ss.setMerchantName(RS.getString("MERCHANTNAME")); // 添加 merchantName 读取
+                ss.setmerchantname(RS.getString("MERCHANTNAME")); // 添加 merchantname 读取
                 arr.add(ss);
             }
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class Order_Use {
 
         // 写在数据库中运行的 SQL
         String sql = "INSERT INTO Orders (GOODNAME, USERNAME, ADDRESS, NUMBER, PRICE, MERCHANTNAME) " +
-                "VALUES (?, ?, ?, ?, ?, ?)"; // 添加 merchantName
+                "VALUES (?, ?, ?, ?, ?, ?)"; // 添加 merchantname
 
         // 用占位符，准备执行
         PreparedStatement ps = con.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class Order_Use {
         ps.setString(3, s.getAddress());
         ps.setInt(4, s.getNumber());
         ps.setString(5, s.getPrice());
-        ps.setString(6, s.getMerchantName()); // 新增merchantName设值
+        ps.setString(6, s.getmerchantname()); // 新增merchantname设值
 
         ps.executeUpdate(); // 返回操作记录数
     }

@@ -17,7 +17,7 @@ public class merchantRegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8"); // 防止切换后中文变成问号
         request.setCharacterEncoding("utf-8");
-        String merchantName = request.getParameter("merchantName");
+        String merchantname = request.getParameter("merchantname");
         String id = request.getParameter("merchantID"); // 根据新的注册表单改为merchantID
         String password = request.getParameter("password");
         PrintWriter out = response.getWriter(); // 可以把信息输出给客户端界面
@@ -25,9 +25,9 @@ public class merchantRegisterServlet extends HttpServlet {
 
         try {
             if (!Merchant_Use.selectId(id)) {  // 如果不存在相同的id
-                if (!Merchant_Use.checkMerchantByName(merchantName)) { // 如果商家名称不存在
-                    Merchant_Use.register(merchantName, password);
-                    session.setAttribute("merchantName", merchantName); // 定义全局变量名
+                if (!Merchant_Use.checkMerchantByName(merchantname)) { // 如果商家名称不存在
+                    Merchant_Use.register(id,merchantname, password);
+                    session.setAttribute("merchantname", merchantname); // 定义全局变量名
                     response.sendRedirect("registersucc.jsp");
                 } else { // 商家名称已存在
                     out.println("<script>alert('注册失败！已存在该商家名称');</script>");

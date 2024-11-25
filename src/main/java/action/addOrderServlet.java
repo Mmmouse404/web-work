@@ -27,18 +27,18 @@ public class addOrderServlet extends HttpServlet {
         try {
             for (int i = 0; i < itemsArray.length(); i++) {
                 JSONObject itemObj = itemsArray.getJSONObject(i);
-                String goodname = itemObj.getString("goodName");
-                int quantity = itemObj.getInt("quantity");
+                String goodname = itemObj.getString("goodname");
+                int number = itemObj.getInt("number");
                 String price = itemObj.getString("price");
-                String address = req.getParameter("address"); // 同时可以从请求中获取用户地址
-
+                String address = itemObj.getString("address"); // 同时可以从请求中获取用户地址
+                String merchantname = itemObj.getString("merchantname");
                 Order order = new Order();
                 order.setGoodName(goodname);
                 order.setUserName(username);
                 order.setAddress(address);
-                order.setNumber(quantity);
+                order.setNumber(number);
                 order.setPrice(price);
-
+                order.setmerchantname(merchantname);
                 Order_Use.insertOrder(order);   // 插入订单处理
             }
             res.getWriter().write("订单创建成功！"); // 发送成功消息

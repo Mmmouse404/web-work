@@ -133,7 +133,7 @@ public class Goodlist_Use {
         }
         return image;
     }
-    public  static String searchMerchantNameById(String id) throws SQLException{  //根据id查商品图片
+    public  static String searchmerchantnameById(String id) throws SQLException{  //根据id查商品图片
         String sql = "select merchantname from Goodlists where id="+id;
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
@@ -143,6 +143,31 @@ public class Goodlist_Use {
             merchantname=RS.getString("merchantname");
         }
         return merchantname;
+    }
+    public static Goodlist searchGoodById(String id) throws SQLException {
+        String sql = "SELECT * FROM Goodlists WHERE id = ?";
+        Goodlist good = null;
+
+        try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, id); // 设置查询参数
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                good = new Goodlist();
+                good.setId(rs.getString("id")); //设置商品ID
+                good.setGoodName(rs.getString("goodname")); // 设置商品名称
+                good.setImage(rs.getString("image")); // 设置商品图片
+                good.setPrice(rs.getString("price")); // 设置商品价格
+                good.setStock(rs.getString("stock")); // 设置库存数量
+                good.setKind(rs.getString("kind")); // 设置商品类别
+                good.setMerchantName(rs.getString("merchantname")); // 设置商家名称
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+
+        return good; // 返回商品对象
     }
     public static void insertGood(Goodlist s) throws SQLException, ClassNotFoundException {   //增加商品
         //先建立 连接
@@ -169,5 +194,40 @@ public class Goodlist_Use {
             ps.executeUpdate(); // 执行删除操作
         }
     }
+    public static ArrayList<Goodlist> getGoodsByMerchantName(String merchantName) throws SQLException {
+        ArrayList<Goodlist> arr = new ArrayList<>();
+        String sql = "SELECT * FROM Goodlists WHERE merchantname = ?"; // 根据商家名称过滤
 
+        try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, merchantName); // 设置查询参数
+            ResultSet RS = ps.executeQuery();
+
+            while (RS.next()) {
+                Goodlist gs = new Goodlist();
+                gs.setId(RS.getString("id"));
+                gs.setGoodName(RS.getString("goodname"));
+                gs.setImage(RS.getString("image"));
+                gs.setPrice(RS.getString("price"));
+                gs.setStock(RS.getString("stock"));
+                gs.setKind(RS.getString("kind"));
+                gs.setMerchantName(RS.getString("merchantname"));
+                arr.add(gs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return arr; // 返回该商家的商品列表
+    }
+    public static void updateGood(Goodlist good) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE Goodlists SET goodname = ?, kind = ?, image = ?, price = ?, stock = ? WHERE id = ?";
+        try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, good.getGoodName());
+            ps.setString(2, good.getKind());
+            ps.setString(3, good.getImage());
+            ps.setString(4, good.getPrice());
+            ps.setString(5, good.getStock());
+            ps.setString(6, good.getId());
+            ps.executeUpdate(); // 执行更新操作
+        }
+    }
 }

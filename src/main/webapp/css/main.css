@@ -1,103 +1,123 @@
-body{
-    background: url("../img/bg3.jpg") no-repeat;
-    background-size: cover;
+/* 背景 */
+body {
+    background-color: #f9f9f9; /* 设置一个更柔和的浅色背景 */
+    font-family: Arial, sans-serif; /* 使用 Arial 字体，后备默认字体 */
 }
-.main_head{
-    position: absolute;
+
+/* 顶部导航 */
+.main_head {
+    position: fixed; /* 固定在页面顶部 */
     left: 0;
     top: 0;
-    content: "";
     width: 100%;
-    height: 10%;
-    background: #FFFFFF;
-    border-bottom: #1A1A1A;
+    height: 10%; /* 顶部高度 */
+    background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+    border-bottom: 2px solid #1A1A1A; /* 细边框 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 投影效果 */
 }
-.logo{
+
+.logo {
     position: absolute;
     left: 2%;
-    top: 0;
+    top: 5%; /* 向下移动一些 */
     width: 220px;
     height: 90px;
 }
-.logo img{
-    width: 200px;
-    height: 90px;
 
-
+.logo img {
+    width: 100%; /* 自适应宽度 */
+    height: auto; /* 自适应高度 */
 }
-.top_up{
+
+/* 用户信息设置 */
+.top_up {
     position: absolute;
-    top: 30%;
-    right: 0%;
-    font-size: 36px;
-    letter-spacing: 5px;
+    top: 20%; /* 向下移动一些 */
+    right: 2%;
+    font-size: 20px; /* 顶部文字大小 */
+    letter-spacing: 1px; /* 字母间距 */
     margin-right: 20px;
-    font-family: "华文琥珀";
-    width: 50%;
-    height: 70%;
+    font-family: Arial, sans-serif; /* 使用 Arial 字体 */
+    color: #333; /* 深灰色 */
     text-align: end;
 }
-.top_up img{
-    margin-right: 50px;
+
+.top_up img {
+    margin-right: 25px;
+    transition: transform 0.2s; /* 过渡效果 */
 }
-.main_down{
+
+.top_up img:hover {
+    transform: scale(1.1); /* 悬停效果 */
+}
+
+/* 内容区域 */
+.main_down {
     position: fixed;
-    top:12%;
-    left:4%;
+    top: 12%;
+    left: 4%;
     width: 92%;
     min-height: 85%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* 更加明显的背景 */
     display: flex;
+    flex-direction: column; /* 竖向排列 */
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 25px rgba(0,122,255,0.9);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 100px;
+    box-shadow: 0 0 25px rgba(0, 122, 255, 0.9);
+    border-radius: 15px; /* 圆角 */
+    padding: 20px; /* 内边距 */
 }
-.tit1{
-    position: relative;
-    margin-left: 50px;
-    font-size: 44px;
-    font-family: 华文琥珀;
-    text-shadow: 0 0 25px rgba(255,0,0,1);
-    color: red;
-    cursor: pointer;
 
+/* 标题样式 */
+.tit1 {
+    margin-left: 20px; /* 左侧间距 */
+    font-size: 36px; /* 适中的字体 */
+    font-family: Arial, sans-serif; /* 使用 Arial 字体 */
+    color: red; /* 红色标题 */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* 文字阴影 */
+    font-weight: bold; /* 加粗 */
 }
-.shop_table{
-    position: absolute;
+
+/* 商品表格 */
+.shop_table {
+    margin-top: 20px; /* 与标题的间隔 */
     width: 100%;
-    height: 100%;
-    left: 5%;
-    top: 10%;
+}
 
+.shop_table table {
+    width: 100%; /* 占满容器 */
+    border-collapse: collapse; /* 表格边框合并 */
 }
-.shop_table table{
-    position: relative;
-    width: 96%;
-    height: 85%;
 
+.shop_table table td {
+    text-align: center; /* 内容居中 */
+    padding: 10px; /* 单元格内边距 */
 }
-.shop_table table td span.s2{
+
+/* 商品名称和价格样式 */
+.shop_table table td span.s2 {
     cursor: pointer;
-    font-size: 28px;
-    color: red;
-    text-shadow: 0 5px 25px rgba(255,255,255,1);
-    font-family: "华文琥珀";
+    font-size: 24px; /* 调整字体大小 */
+    color: red; /* 红色价格 */
+    text-shadow: 0 5px 10px rgba(255, 255, 255, 1);
+    font-family: Arial, sans-serif; /* 使用 Arial 字体 */
 }
-.shop_table table td span.s1{
+
+.shop_table table td span.s1 {
     cursor: pointer;
-    font-size: 22px;
-    color: black;
-    text-shadow: 0 5px 30px rgba(255,255,255,1);
-    font-family: "华文琥珀";
+    font-size: 20px; /* 调整字体大小 */
+    color: #333; /* 黑色商品名 */
+    text-shadow: 0 5px 30px rgba(255, 255, 255, 1);
+    font-family: Arial, sans-serif; /* 使用 Arial 字体 */
 }
-/*鼠标移到图片上放大*/
-.shop_table table img{
-    cursor: pointer;
-    transition: all 0.4s;
+
+/* 鼠标移到图片上放大 */
+.shop_table table img {
+    cursor: pointer; /* 鼠标指针样式 */
+    transition: transform 0.4s; /* 过渡效果 */
+    width: 100px; /* 定义图片宽度 */
+    height: auto; /* 高度自适应 */
 }
-.shop_table table img:hover{
-    transform: scale(1.4);
+
+.shop_table table img:hover {
+    transform: scale(1.1); /* 悬停效果 */
 }

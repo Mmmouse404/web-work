@@ -20,7 +20,7 @@ public class Cart_Use {
         ps.setString(3, cartItem.getAddress());
         ps.setInt(4, cartItem.getNumber());
         ps.setString(5, cartItem.getPrice());
-        ps.setString(6, cartItem.getMerchantName());
+        ps.setString(6, cartItem.getmerchantname());
         ps.executeUpdate();
     }
 
@@ -39,7 +39,7 @@ public class Cart_Use {
             item.setAddress(rs.getString("address"));
             item.setNumber(rs.getInt("number"));
             item.setPrice(rs.getString("price"));
-            item.setMerchantName(rs.getString("merchantname")); // 新增获取商家名称
+            item.setmerchantname(rs.getString("merchantname")); // 新增获取商家名称
             cartItems.add(item);
         }
         return cartItems;

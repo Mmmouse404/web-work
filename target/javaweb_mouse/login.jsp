@@ -89,6 +89,8 @@
         <input type="password" required="required" placeholder="密码" name="password">
         <button class="but" type="submit">登录</button>
     </form>
+
+    <p>还没有账号？<a href="register.jsp">去注册</a></p> <!-- 添加跳转到注册页面的链接 -->
 </div>
 </body>
 </html>

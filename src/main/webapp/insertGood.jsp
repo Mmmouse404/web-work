@@ -1,15 +1,19 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*" %>
+<%@ page import="dao.Goodlist" %>
+<%@ page import="dao.Goodlist_Use" %>
+<%@ page import="java.io.File" %>
+<%@ page import="javax.servlet.annotation.MultipartConfig" %>
+<%@ page import="javax.servlet.http.Part" %>
 <html>
 <head>
     <title>小卖部后台管理增加商品</title>
-    <link rel="stylesheet" type="text/css" href="css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="css/manage.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/manage.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/ajax.js"></script>
     <script>
         $(function () {
-            //下拉菜单栏的实现 toggle():切换隐藏显示状态
-            $(".sidebar-content>ul>li").click(function(){
+            $(".sidebar-content>ul>li").click(function() {
                 $(this).children('ul').toggle();
             });
             $(".sidebar-title").click(function () {
@@ -18,123 +22,62 @@
         });
 
         function insertGood() {
-            var formData = new FormData(); // 创建FormData对象
-            var i1=$("#i1").val();
-            var i2 = document.getElementById('i2').files[0]; // 获取文件对象
-            var i3=$("#i3").val();
-            var i4=$("#i4").val();
-            var i5=$("#i5").val();
-            var i6=$("#i6").val();
-            formData.append("id", i1);
-            formData.append("image", i2); // 直接使用文件对象
-            formData.append("kind", i3);
-            formData.append("goodname", i4);
-            formData.append("price", i5);
-            formData.append("stock", i6);
+            var formData = new FormData();
+            var goodImage = document.getElementById('i2').files[0];
+            var goodKind = $("#i3").val();
+            var goodName = $("#i4").val();
+            var goodPrice = $("#i5").val();
+            var goodStock = $("#i6").val();
+            var merchantName = "<%= session.getAttribute("merchantname") %>";
 
-            // 发送AJAX请求
+            formData.append("image", goodImage);
+            formData.append("kind", goodKind);
+            formData.append("goodname", goodName);
+            formData.append("price", goodPrice);
+            formData.append("stock", goodStock);
+            formData.append("merchantname", merchantName);
+
             $.ajax({
-                url: "ishop", // 上传处理的服务器端URL
+                url: "ishop",
                 type: "POST",
                 data: formData,
-                processData: false, // 不处理数据
-                contentType: false, // 不设置内容类型
+                processData: false,
+                contentType: false,
                 success: function(response) {
-                    alert("商品上架成功！"); // 提示用户商品已上架
-                    location.reload(); // 刷新当前页面
+                    alert("商品上架成功！" + response);
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
-                    alert("上传失败，请重试。"); // 错误提示
+                    alert("上传失败，请重试：", error);
                 }
             });
         }
 
-        function result(){
-            if (httpRequest.readyState == 4) {
-                if (httpRequest.status == 200) {
-                    alert("商品上架成功！");
-                }
-            }
-        }
-
         function previewImage(event) {
-            var image = document.getElementById('imagePreview');
+            var imagePreview = document.getElementById('imagePreview');
             var file = event.target.files[0];
 
             if (file) {
                 var reader = new FileReader();
-
                 reader.onload = function(e) {
-                    image.src = e.target.result; // 设置预览图像的源
-                    image.style.display = 'block'; // 显示预览图像
-                }
-
-                reader.readAsDataURL(file); // 将文件读取为Data URL
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
             } else {
-                image.src = ""; // 如果没有选择图片，清空预览
-                image.style.display = 'none'; // 隐藏预览图像
+                imagePreview.src = "";
+                imagePreview.style.display = 'none';
             }
         }
-
     </script>
 </head>
 <body>
-<div class="topbar-wrap white">
-    <div class="topbar-inner clearfix">
-        <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="manageUser.jsp" class="navbar-brand">后台管理</a></h1>
-            <ul class="navbar-list clearfix">
-                <li><a class="on" href="manageUser.jsp">首页</a></li>
-                <li><a href="user.jsp" target="_blank">小卖部用户登录</a></li>
-            </ul>
-        </div>
-        <div class="top-info-wrap">
-            <ul class="top-info-list clearfix">
-                <li><a href="#">管理员</a></li>
-                <li><a href="#">店长信息</a></li>
-                <li><a href="#">退出</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<jsp:include page="header.jsp" />
 <div class="container clearfix">
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <a href="#"><h1>菜单</h1></a>
-        </div>
-        <div class="sidebar-content">
-            <ul class="sidebar-list">
-                <li>
-                    <a href="#">用户管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="manageUser.jsp">用户信息</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">商品管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="manageGood.jsp">全部商品</a></li>
-                        <li><a href="#">添加商品</a></li>
-                        <li><a href="manageGood.jsp">删除商品</a></li>
-                        <li><a href="manageOrder.jsp">商品订单</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">系统管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="manageSetting.jsp">系统设置</a></li>
-                        <li><a href="manageSetting.jsp">清理缓存</a></li>
-                        <li><a href="manageSetting.jsp">数据备份</a></li>
-                        <li><a href="manageSetting.jsp">数据还原</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--/sidebar-->
+    <jsp:include page="sidebar.jsp" />
     <div class="main-wrap">
         <div class="crumb-wrap">
-            <div class="crumb-list"><a href="managerUser.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">新增商品</span></div>
+            <div class="crumb-list"><a href="manageUser.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">新增商品</span></div>
         </div>
         <div class="result-wrap">
             <form action="#" method="post" id="myform" name="myform">
@@ -159,19 +102,23 @@
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>商品类别：</th>
-                                <td><input type="text" id="i3" value="" size="85" name="" class="common-text" placeholder="例：饮料"></td>
+                                <td><input type="text" id="i3" size="85" name="" class="common-text" placeholder="例：饮料"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>商品名称：</th>
-                                <td><input type="text" id="i4" value="" size="85" name="" class="common-text" placeholder="例：百事可乐"></td>
+                                <td><input type="text" id="i4" size="85" name="" class="common-text" placeholder="例：百事可乐"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>商品价格：</th>
-                                <td><input type="text" id="i5" value="" size="85" name="" class="common-text" placeholder="例：4.0"></td>
+                                <td><input type="text" id="i5" size="85" name="" class="common-text" placeholder="例：4.0"></td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>商品库存：</th>
-                                <td><input type="text" id="i6" value="" size="85" name="" class="common-text" placeholder="例：66"></td>
+                                <td><input type="text" id="i6" size="85" name="" class="common-text" placeholder="例：66"></td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>商家名称：</th>
+                                <td><input type="text" id="merchantname" value="<%= session.getAttribute("merchantname") %>" size="85" class="common-text" readonly></td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -180,13 +127,13 @@
                                     <input type="button" value="返回" onClick="window.location.href='manageGood.jsp';" class="btn btn6">
                                 </td>
                             </tr>
-                            </tbody></table>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <!--/main-->
 </div>
 </body>
 </html>

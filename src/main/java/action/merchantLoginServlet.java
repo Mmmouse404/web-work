@@ -1,6 +1,7 @@
 package action;
 
 import dao.Merchant_Use;
+import dao.User_Use;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +18,20 @@ public class merchantLoginServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String merchantID = request.getParameter("merchantID"); // 读取商家 ID
         String password = request.getParameter("password");
-
+        String merchantname= null;
+        HttpSession session = request.getSession();
+        session.setAttribute("merchantname",merchantname);
+        try {
+            merchantname = Merchant_Use.returnname(merchantID);    //查询id对应的账号名
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         try {
             if (Merchant_Use.validateLoginById(merchantID, password)) { // 新方法：通过 ID 验证登录
-                HttpSession session = request.getSession();
+
                 session.setAttribute("merchantID", merchantID);
                 session.setAttribute("userType", "merchant");
+                session.setAttribute("merchantname", merchantname);
                 response.sendRedirect("loginSuccess.jsp");
             } else {
                 response.sendRedirect("loginFail.jsp?msg=账号或密码错误");
