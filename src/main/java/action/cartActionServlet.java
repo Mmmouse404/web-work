@@ -17,8 +17,8 @@ public class cartActionServlet extends HttpServlet {
 
         try {
             if ("delete".equals(action)) {
-                String goodName = request.getParameter("goodname");
-                Cart_Use.deleteCartItem(username, goodName);
+                int id = Integer.parseInt(request.getParameter("id")); // 获取商品id
+                Cart_Use.deleteCartItemById(id);
                 response.getWriter().write("success"); // 返回成功消息
             } else if ("clear".equals(action)) {
                 Cart_Use.clearCart(username);

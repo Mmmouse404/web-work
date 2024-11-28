@@ -18,7 +18,7 @@
         <a href="cart.jsp">购物车</a>
         <a href="allShop.jsp">全部商品</a>
         <a href="logout">退出</a> <!-- 退出登录链接 -->
-        <a href="login.jsp" class="login-button">登录</a> <!-- 新增登录按钮 -->
+        <a href="manageGood.jsp" class="login-button">商家</a> <!-- 新增登录按钮 -->
     </div>
 </div>
 

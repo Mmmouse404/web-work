@@ -2,6 +2,13 @@
 <%@ page import="dao.Goodlist" %>
 <%@ page import="dao.Goodlist_Use" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    // 检查用户是否已登录
+    if (session.getAttribute("merchantname") == null) {
+        response.sendRedirect("login.jsp"); // 如果未登录，重定向到登录页面
+        return; // 结束当前页面的执行
+    }
+%>
 <html>
 <head>
     <title>全部商品后台管理</title>

@@ -3,7 +3,11 @@ body {
     background-color: #f9f9f9; /* 设置一个更柔和的浅色背景 */
     font-family: Arial, sans-serif; /* 使用 Arial 字体，后备默认字体 */
 }
-
+.unavailable {
+    opacity: 0.5; /* 变暗 */
+    cursor: not-allowed; /* 鼠标样式为不可选中 */
+    pointer-events: none; /* 禁止点击事件 */
+}
 /* 顶部导航 */
 .main_head {
     position: fixed; /* 固定在页面顶部 */

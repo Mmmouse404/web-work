@@ -2,6 +2,7 @@ package action;
 
 import dao.Order;
 import dao.Order_Use;
+import dao.Goodlist_Use; // 引入 Goodlist_Use 以检查库存
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +31,17 @@ public class addOrderServlet extends HttpServlet {
                 String goodname = itemObj.getString("goodname");
                 int number = itemObj.getInt("number");
                 String price = itemObj.getString("price");
-                String address = itemObj.getString("address"); // 同时可以从请求中获取用户地址
+                String address = itemObj.getString("address");
                 String merchantname = itemObj.getString("merchantname");
+
+                boolean isInStock = Goodlist_Use.checkStock(goodname, number); // 检查库存
+                res.getWriter().write("库存："+isInStock);
+                if (!isInStock) {
+                    res.getWriter().write("库存不足，无法生成订单。");
+                    return; // 返回库存不足的消息
+                }
+
+                // 如果库存充足，则创建并插入订单
                 Order order = new Order();
                 order.setGoodName(goodname);
                 order.setUserName(username);
@@ -39,7 +49,11 @@ public class addOrderServlet extends HttpServlet {
                 order.setNumber(number);
                 order.setPrice(price);
                 order.setmerchantname(merchantname);
+
                 Order_Use.insertOrder(order);   // 插入订单处理
+
+                // 更新库存
+                Goodlist_Use.updateStock(goodname, number); // 另需创建这个方法，负责更新库存
             }
             res.getWriter().write("订单创建成功！"); // 发送成功消息
         } catch (SQLException | JSONException e) {

@@ -2,6 +2,11 @@ body{
     background: url("../img/bg3.jpg") no-repeat;
     background-size: cover;
 }
+.unavailable {
+    opacity: 0.5; /* 变暗 */
+    cursor: not-allowed; /* 鼠标样式为不可选中 */
+    pointer-events: none; /* 禁止点击事件 */
+}
 .main_head{
     position: absolute;
     left: 0;

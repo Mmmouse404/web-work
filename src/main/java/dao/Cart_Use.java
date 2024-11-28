@@ -34,6 +34,7 @@ public class Cart_Use {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             Cart item = new Cart();
+            item.setId(rs.getInt("id"));
             item.setGoodName(rs.getString("goodname"));
             item.setUserName(rs.getString("username"));
             item.setAddress(rs.getString("address"));
@@ -44,7 +45,13 @@ public class Cart_Use {
         }
         return cartItems;
     }
-
+    public static void deleteCartItemById(int id) throws SQLException {
+        Connection con = UTIL.getCon();
+        String sql = "DELETE FROM Cart WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+    }
     public static void deleteCartItem(String username, String goodName) throws SQLException {
         Connection con = UTIL.getCon();
         String sql = "DELETE FROM Cart WHERE username = ? AND goodname = ?";

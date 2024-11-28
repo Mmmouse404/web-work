@@ -33,7 +33,7 @@ public class Goodlist_Use {
         }
         return arr;
     }
-    public static ArrayList<Goodlist> getGoodList(String category, String keywords) throws SQLException {
+    public static ArrayList<Goodlist> getGoodListByKind(String category, String keywords) throws SQLException {
         ArrayList<Goodlist> arr = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT * FROM Goodlists WHERE 1=1"); // 创建基础查询
 
@@ -218,6 +218,18 @@ public class Goodlist_Use {
         }
         return arr; // 返回该商家的商品列表
     }
+    public static boolean checkStock(String goodname, int quantity) throws SQLException {
+        String sql = "SELECT stock FROM Goodlists WHERE goodname = ?";
+        try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, goodname);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int stock = rs.getInt("stock");
+                return stock >= quantity; // 检查库存是否充足
+            }
+        }
+        return false; // 如果没有找到相应的商品
+    }
     public static void updateGood(Goodlist good) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE Goodlists SET goodname = ?, kind = ?, image = ?, price = ?, stock = ? WHERE id = ?";
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -230,4 +242,13 @@ public class Goodlist_Use {
             ps.executeUpdate(); // 执行更新操作
         }
     }
+    public static void updateStock(String goodname, int quantity) throws SQLException {
+        String sql = "UPDATE Goodlists SET stock = stock - ? WHERE goodname = ?";
+        try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, quantity); // 减去的数量
+            ps.setString(2, goodname); // 设置商品ID
+            ps.executeUpdate(); // 执行更新操作
+        }
+    }
+
 }

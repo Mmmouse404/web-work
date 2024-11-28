@@ -1,12 +1,18 @@
 package dao;
 
 public class Cart {
+    int id;
     String goodname;    //商品名字
     String username;    //用户名字
     String address;     //地址
     int number;    //数量
     String price;   //价格总和
     String merchantname;
+
+    public int getId(){return id;}
+
+    public void setId(int id){this.id = id;}
+
     public String getAddress() {
         return address;
     }

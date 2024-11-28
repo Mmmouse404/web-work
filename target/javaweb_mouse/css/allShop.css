@@ -104,3 +104,37 @@ body{
     text-shadow: 0 5px 25px rgba(0,122,255,0.8);
     font-family: "华文琥珀";
 }
+.shop_container {
+    display: flex;
+    flex-wrap: wrap; /* 允许换行 */
+    justify-content: space-between; /* 商品之间的空隙 */
+    margin: 0 -10px; /* 确保产品之间的间距，稍微外扩容器边距 */
+}
+
+.product-card {
+    width: calc(33.33% - 20px); /* 每行显示三列商品，减去边距 */
+    box-sizing: border-box; /* 包含内边距和边框在内 */
+    margin: 10px; /* 商品间隔 */
+}
+
+.product-image {
+    width: 100%; /* 图片自适应宽度 */
+    height: auto; /* 自适应高度保持比例 */
+}
+
+.qbtn,
+.add-to-cart {
+    padding: 10px 15px; /* 更小的内边距 */
+    font-size: 14px; /* 调整字体大小 */
+    background: red; /* 按钮背景 */
+    color: #FFFFFF; /* 按钮字体颜色 */
+    width: 100%; /* 按钮宽度 */
+    font-weight: 600; /* 加粗字体 */
+    border: none; /* 去掉边框 */
+    border-radius: 5px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬停样式 */
+}
+
+.add-to-cart {
+    background: #007BFF; /* 加入购物车按钮的颜色 */
+}

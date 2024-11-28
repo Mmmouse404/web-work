@@ -1,12 +1,12 @@
 .picture{
     position: relative;
     float: left;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
 }
 
 .mas_table{
-    float: left;
+    float: right;
     margin-left: 50px;
 }
 .mas_table table{
@@ -15,12 +15,12 @@
 
 .shopname h1{
     font-size: 50px;
-    color: #FFFFFF;
+    color: black;
     margin-left: 20px;
 }
 .shopname p{
     font-size: 10px;
-    color: #FFFFFF;
+    color: black;
 }
 .snum{
     margin-left: 20px;
@@ -28,7 +28,7 @@
 
 }
 .snum span{
-    color: #FFFFFF;
+    color: black;
     font-size: 28px;
     margin-bottom: 5px;
 }
@@ -37,7 +37,7 @@
     font-size: 16px;
     letter-spacing: 1px;
     background: red;
-    color: #FFFFFF;
+    color: white;
     width: 120px;
     font-weight: 600;
     margin-top: 30px;
@@ -120,7 +120,7 @@ margin-top: 30px;
     outline: 0;
 }
 .goods_price{
-    color: #FFFFFF;
+    color: black;
     font-size: 22px;
 }
 .good_total{
@@ -130,5 +130,5 @@ margin-top: 30px;
     margin-top: 10px;
 }
 td{
-    color: #FFFFFF;
+    color: black;
 }

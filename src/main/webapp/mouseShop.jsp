@@ -3,6 +3,13 @@
 <%@ page import="dao.Goodlist" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%
+    // 检查用户是否已登录
+    if (session.getAttribute("upname") == null) {
+        response.sendRedirect("login.jsp"); // 如果未登录，重定向到登录页面
+        return; // 结束当前页面的执行
+    }
+%>
 <html>
 <head>
     <title>商品详情</title>
@@ -15,10 +22,27 @@
             function calc() {
                 var price = parseFloat($("#goods_price").text()); // 获取单价
                 var quantity = parseInt($("#number").val()); // 获取数量
+                var stock = parseInt($("#stock").text()); // 获取库存
                 var total = (price * quantity).toFixed(2); // 计算总价
                 $("#good_total").text(total); // 显示总价
-            }
 
+                // 限制数量不能超过库存
+                if (quantity > stock) {
+                    quantity = stock; // 如果超过库存，将数量设置为库存
+                    $("#number").val(quantity); // 更新输入框
+                    alert("已达到库存上限，最多只能购买 " + stock + " 件。");
+                }
+                // 更新加号按钮的状态
+                updateAddButtonState(quantity, stock);
+            }
+            // 更新加号按钮的状态
+            function updateAddButtonState(quantity, stock) {
+                if (quantity >= stock) {
+                    $("#i2").addClass("unavailable"); // 添加变暗样式
+                } else {
+                    $("#i2").removeClass("unavailable"); // 移除样式
+                }
+            }
             // 商品数量加减
             $("#i1").click(function () {
                 var num = parseInt($("#number").val());
@@ -26,9 +50,16 @@
                 $("#number").val(num);
                 calc(); // 重新计算总价
             });
+
             $("#i2").click(function () {
                 var num = parseInt($("#number").val());
+                var stock = parseInt($("#stock").text()); // 获取库存
                 num++; // 自增
+                // 限制数量不能超过库存
+                if (num > stock) {
+                    num = stock; // 如果超过库存，将数量设置为库存
+                    alert("已达到库存上限，最多只能购买 " + stock + " 件。");
+                }
                 $("#number").val(num);
                 calc(); // 重新计算总价
             });
@@ -39,6 +70,7 @@
             });
         });
 
+
         function addToCart() {
             var goodname = $("#tt").text(); // 商品名称
             var username = "<%=session.getAttribute("upname")%>"; // 用户名称
@@ -46,7 +78,7 @@
             var number = $("#number").val(); // 商品数量
             var price = $("#good_total").text(); // 商品总价
             var merchantName = $("#merchantname").text(); // 商家名称
-
+            var goodId =  $("#good_id").text(); // 商品ID
             // 验证输入信息是否合法
             if (!goodname || !username || !address || !number || !price || !merchantName) {
                 alert("请确保所有信息都填写正确！");
@@ -58,8 +90,8 @@
                 + "&address=" + encodeURIComponent(address)
                 + "&number=" + encodeURIComponent(number)
                 + "&price=" + encodeURIComponent(price)
-                + "&merchantname=" + encodeURIComponent(merchantName); // 注意大小写
-
+                + "&merchantname=" + encodeURIComponent(merchantName) // 注意大小写
+                + "&goodId=" + encodeURIComponent(goodId);
             // 发送请求到 addToCart Servlet
             $.ajax({
                 url: "addToCart", // 后端处理的 URL
@@ -86,14 +118,15 @@
             var number = $("#number").val(); // 购买数量
             var price = $("#good_total").text(); // 总价
             var merchantname = "<%=session.getAttribute("merchantname")%>"; // 商家名称
+            var goodId =  $("#good_id").text(); // 商品ID
 
             var param = "goodname=" + encodeURIComponent(goodname)
                 + "&username=" + encodeURIComponent(username)
                 + "&number=" + encodeURIComponent(number)
                 + "&address=" + encodeURIComponent(address)
                 + "&price=" + encodeURIComponent(price)
-                + "&merchantname=" + encodeURIComponent(merchantname);
-
+                + "&merchantname=" + encodeURIComponent(merchantname)
+                + "&goodId=" + encodeURIComponent(goodId);
             sendRequest("iindent", param, "POST", result);
         }
 
@@ -113,9 +146,10 @@
 <div class="main_head">
     <div class="logo"><img src="img/logo3.png"></div>
     <div class="top_up">欢迎您：<%=session.getAttribute("upname")%>
-        <img src="img/grzx.png" width="50" height="50">
-        <a href="cart.jsp"><img src="img/gwc.png" width="50" height="50"></a>
-        <a href="allShop.jsp"><img src="img/allshop.png" width="75" height="50"></a>
+        <a href="cart.jsp">购物车</a>
+        <a href="allShop.jsp">全部商品</a>
+        <a href="logout">退出</a> <!-- 退出登录链接 -->
+        <a href="manageGood.jsp" class="login-button">商家</a> <!-- 新增登录按钮 -->
     </div>
 </div>
 
@@ -147,10 +181,13 @@
                             <h1 id="tt"><%=item.getGoodName()%></h1>
                         </div>
                     </td>
-                    <td>商家名称：<h2 id="merchantname"><%=item.getMerchantName()%></h2> <!-- 显示商家名称 --></td>
+
                 </tr>
                 <tr>
+                    <td>商家名称：<h2 id="merchantname"><%=item.getMerchantName()%></h2> <!-- 显示商家名称 --></td>
+                    <td>商家编号：<h2 id="good_id"><%=item.getId()%></h2> <!-- 显示商家名称 --></td>
                     <td>单价：<i class="goods_price" id="goods_price"><%=item.getPrice()%></i>元</td>
+                    <td>库存：<span id="stock"><%=item.getStock()%></span>件</td> <!-- 显示库存 -->
                 </tr>
                 <tr>
                     <td>

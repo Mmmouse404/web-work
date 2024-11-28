@@ -52,8 +52,9 @@
                             <th>状态</th>
                         </tr>
                         <%
-                            ArrayList<Order> RR = Order_Use.getOrders();
-                            int mnum = Order_Use.getGoodNumber();
+                            String merchantName = (String) session.getAttribute("merchantname"); // 获取当前商家名称
+                            ArrayList<Order> RR = Order_Use.getOrdersByMerchant(merchantName); // 获取当前商家的订单
+                            int mnum = RR.size(); // 获取订单数量
                             for (Order aa : RR) {
                         %>
                         <tr>
