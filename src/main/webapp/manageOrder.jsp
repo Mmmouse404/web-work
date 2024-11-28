@@ -9,6 +9,37 @@
     <link rel="stylesheet" type="text/css" href="css/manage.css"/>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script>
+        function batchDelete() {
+            var ids = [];
+            // 获取所有选中的复选框
+            $("input[name='checkbox']:checked").each(function() {
+                var orderId = $(this).closest('tr').find('td:eq(1)').text(); // 获取订单编号
+                ids.push(orderId); // 将订单 ID 添加到数组
+            });
+
+            if (ids.length === 0) {
+                alert("请至少选择一件订单进行删除！");
+                return; // 如果没有选中订单，结束函数
+            }
+
+            // 发送 AJAX 请求到后端进行删除
+            $.ajax({
+                url: "orderBatchDelete", // 假设这是处理批量删除的 Servlet
+                type: "POST",
+                data: { ids: ids }, // 传递选中的订单 ID
+                traditional: true, // 使用传统方式传递数组
+                success: function(response) {
+                     {
+                        alert("订单已成功删除");
+                        window.location.reload(); // 刷新页面
+                    }
+                },
+                error: function() {
+                    alert("请求失败，请重试");
+                }
+            });
+        }
+
         $(function () {
             $("#c1").click(function () {
                 $("input[name='checkbox']").prop("checked", this.checked);
@@ -36,7 +67,8 @@
                 <div class="result-title">
                     <div class="result-list">
                         <a href="#">新增订单</a>
-                        <a id="batchDel" href="#">批量删除</a>
+                        <a id="batchDel" href="#" onclick="batchDelete();">批量删除</a>
+
                     </div>
                 </div>
                 <div class="result-content">

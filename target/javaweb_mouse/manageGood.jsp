@@ -16,6 +16,36 @@
     <link rel="stylesheet" type="text/css" href="css/manage.css"/>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script >
+        function batchDelete() {
+            var ids = [];
+            // 获取所有选中的复选框
+            $("input[name='checkbox']:checked").each(function() {
+                ids.push($(this).val()); // 将选中的商品 ID 添加到数组
+            });
+
+            if (ids.length === 0) {
+                alert("请至少选择一件商品进行删除！");
+                return; // 如果没有选中商品，结束函数
+            }
+
+            // 发送 AJAX 请求到后端进行删除
+            $.ajax({
+                url: "goodBatchDelete",
+                type: "POST",
+                data: { ids: ids }, // 注意数据格式
+                traditional: true, // 使得数组以传统方式传递
+                success: function(response) {
+                    {
+                        alert("商品已成功删除");
+                        window.location.reload(); // 刷新页面
+                    }
+                },
+                error: function() {
+                    alert("请求失败，请重试");
+                }
+            });
+        }
+
         $(function () {
             $(".sidebar-content>ul>li").click(function() {
                 $(this).children('ul').toggle();

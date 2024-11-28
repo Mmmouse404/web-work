@@ -193,6 +193,9 @@ public class Goodlist_Use {
             ps.setString(1, id);
             ps.executeUpdate(); // 执行删除操作
         }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public static ArrayList<Goodlist> getGoodsByMerchantName(String merchantName) throws SQLException {
         ArrayList<Goodlist> arr = new ArrayList<>();

@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/batchDelete")
-public class batchDeleteServlet extends HttpServlet {
+@WebServlet("/goodBatchDelete")
+public class goodBatchDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] ids = request.getParameterValues("ids"); // 获取商品编号数组
-
+        System.out.println(ids);
         if (ids != null) {
             try {
                 for (String id : ids) {
+                    System.out.println(id);
                     Goodlist_Use.deleteGood(id); // 调用删除方法
                 }
                 response.setStatus(HttpServletResponse.SC_OK); // 设置成功状态

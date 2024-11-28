@@ -2,6 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="dao.Goodlist" %>
 <%@ page import="dao.Goodlist_Use" %>
+<%@ page import="java.sql.SQLException" %>
 <html>
 <head>
     <title>小卖部后台管理修改商品</title>
@@ -97,7 +98,12 @@
                         </thead>
                         <tbody>
                         <%
-                            ArrayList<Goodlist> goods = Goodlist_Use.getGoodList(); // 获取所有商品
+                            ArrayList<Goodlist> goods = null; // 获取所有商品
+                            try {
+                                goods = Goodlist_Use.getGoodList();
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
                             for (Goodlist good : goods) {
                         %>
                         <tr>

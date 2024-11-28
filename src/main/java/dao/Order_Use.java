@@ -92,4 +92,16 @@ public class Order_Use {
 
         return orders; // 返回查询到的订单列表
     }
+    public static void deleteOrder(int orderId) throws SQLException {
+        String sql = "DELETE FROM Orders WHERE ID = ?";
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, orderId); // 设置要删除的订单 ID
+            ps.executeUpdate(); // 执行删除操作
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+    }
+
 }
