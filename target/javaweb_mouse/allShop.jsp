@@ -22,7 +22,8 @@
     <div class="logo"><img src="img/logo3.png" alt="Logo"></div>
     <div class="top_up">
         欢迎您：<c:out value="${sessionScope.upname}"/>
-        <img src="img/grzx.png" width="50" height="50" />
+    </div>
+    <div class="navigation">
         <a href="cart.jsp">购物车</a>
         <a href="mainFrame.jsp">推荐商品</a>
         <a href="logout">退出</a> <!-- 退出登录链接 -->
@@ -40,16 +41,15 @@
                     <img class="product-image" src="<c:out value="${a.getImage()}" />" alt="<c:out value="${a.getGoodName()}" />" />
                 </a>
                 <div class="product-info">
-                    <span class="s1"><c:out value="${a.getGoodName()}" /></span><br>
-                    <span class="s2">￥<c:out value="${a.getPrice()}" /></span><br>
-                    <span class="s3"><c:out value="${a.getStock()}" />件</span><br>
-                    <span class="s4"><c:out value="${a.getMerchantName()}" /></span>
+                    <span class="s1"><c:out value="${a.getGoodName()}" /></span>
+                    <span class="s2">价格：<c:out value="${a.getPrice()}" />元</span>
+                    <span class="s3">限量：<c:out value="${a.getStock()}" />件</span>
                 </div>
                 <div class="center">
                     <a href="mouseShop.jsp?Sid=${a.getId()}">
-                        <input type="button" value="购买" class="qbtn" />
+                        <input type="button" value="详情" class="add-to-cart" /> <!-- 加入购物车按钮 -->
                     </a>
-                    <input type="button" value="加入购物车" class="add-to-cart" /> <!-- 加入购物车按钮 -->
+
                 </div>
             </div>
         </c:forEach>

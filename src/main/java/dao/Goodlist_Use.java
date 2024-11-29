@@ -122,10 +122,11 @@ public class Goodlist_Use {
         }
         return price;
     }
-    public  static String searchImageById(String id) throws SQLException{  //根据id查商品图片
-        String sql = "select image from Goodlists where id="+id;
+    public  static String searchImageByName(String goodname) throws SQLException{  //根据id查商品图片
+        String sql = "select image from Goodlists where goodname=?";
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, goodname); // 设置查询参数
         ResultSet RS=ps.executeQuery();
         String image=null;
         while (RS.next()){

@@ -132,3 +132,20 @@ margin-top: 30px;
 td{
     color: black;
 }
+.navigation {
+    position: absolute; /* 绝对定位 */
+    top: 10px; /* 距离顶部10px */
+    right: 10px; /* 距离右侧10px */
+    z-index: 1000; /* 确保在其他元素之上 */
+}
+
+.navigation a {
+    margin: 0 10px; /* 水平间隔 */
+    text-decoration: none; /* 去掉下划线 */
+    color: #333; /* 改为您希望的颜色 */
+    font-weight: bold; /* 加粗字体 */
+}
+
+.navigation a:hover {
+    text-decoration: underline; /* 添加悬停效果 */
+}

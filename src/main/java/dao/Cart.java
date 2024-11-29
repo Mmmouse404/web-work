@@ -10,7 +10,7 @@ public class Cart {
     String merchantname;
 
     public int getId(){return id;}
-
+    public String getIdString(){return String.valueOf(id);}
     public void setId(int id){this.id = id;}
 
     public String getAddress() {

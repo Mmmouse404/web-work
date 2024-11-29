@@ -15,10 +15,12 @@
     <div class="logo"><img src="img/logo3.png" alt="小卖部 Logo"></div>
     <div class="top_up">
         欢迎您：<%= session.getAttribute("upname") %>
+        <div class="navigation">
         <a href="cart.jsp">购物车</a>
         <a href="allShop.jsp">全部商品</a>
         <a href="logout">退出</a> <!-- 退出登录链接 -->
         <a href="manageGood.jsp" class="login-button">商家</a> <!-- 新增登录按钮 -->
+        </div>
     </div>
 </div>
 

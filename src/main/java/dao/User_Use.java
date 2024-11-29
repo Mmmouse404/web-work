@@ -136,5 +136,38 @@ public class User_Use {
         return count;
 
     }
+    public static double getUserMoney(String username) throws SQLException {
+        String sql = "SELECT MONEY FROM Users WHERE NAME = ?";
+        double money = 0.0;
+
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                money = rs.getDouble("MONEY");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+
+        return money; // 返回用户当前的余额
+    }
+
+    public static void updateUserMoney(String username, double newBalance) throws SQLException {
+        String sql = "UPDATE Users SET MONEY = ? WHERE NAME = ?";
+
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setDouble(1, newBalance); // 更新余额
+            ps.setString(2, username); // 设置用户名
+            ps.executeUpdate(); // 执行更新操作
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+    }
 
 }

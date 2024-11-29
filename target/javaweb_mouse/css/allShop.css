@@ -1,127 +1,114 @@
-body{
+body {
     background: #FFFFFF;
 }
-.main_head{
+
+.main_head {
     position: absolute;
     left: 0;
     top: 0;
-    content: "";
     width: 100%;
     height: 100px;
     background: #FFFFFF;
     border-bottom: #1A1A1A;
 }
-.logo{
+
+.logo {
     position: absolute;
     left: 2%;
     top: 0;
     width: 220px;
     height: 90px;
 }
-.logo img{
+
+.logo img {
     width: 200px;
     height: 90px;
-
-
 }
-.top_up{
+
+.top_up {
     position: absolute;
-    top: 30%;
-    right: 0%;
+    top: 40%;
+    right: 0;
     font-size: 36px;
     letter-spacing: 5px;
-    margin-right: 20px;
+    margin-right: 100px;
     font-family: "华文琥珀";
     width: 50%;
     height: 70%;
     text-align: end;
 }
-.top_up img{
+
+.top_up img {
     margin-right: 50px;
 }
-.main_down{
+
+.main_down {
     position: absolute;
-    top:12%;
-    left:4%;
+    top: 12%;
+    left: 4%;
     width: 92%;
     min-height: 850px;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
+    flex-direction: column; /* 垂直布局 */
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 25px rgba(0,122,255,0.9);
+    box-shadow: 0 0 25px rgba(0, 122, 255, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 100px;
 }
-#qbtn{
-    padding: 10px 20px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    background: red;
-    color: #FFFFFF;
-    width: 90%;
-    font-weight: 600;
-    margin-top: 30px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 10px;
 
-}
-#qname{
-    cursor: pointer;
-    font-size: 22px;
-    color: black;
-    text-shadow: 0 5px 30px rgba(0,0,0,1);
-    font-family: "华文琥珀";
-}
-#qjg{
-    cursor: pointer;
-    font-size: 28px;
-    color: red;
-    text-shadow: 0 5px 25px rgba(255,0,0,1);
-    font-family: "华文琥珀";
-}
-.qtable td{
-    border-bottom: solid black 4px;
-    border-top: solid black 4px;
-}
-.qtable{
-    margin-top: 80px;
-    border-left: 0;
-    border-right: 0;
-}
-#qlb{
-    cursor: pointer;
-    font-size: 32px;
-    color: blue;
-    text-shadow: 0 5px 25px rgba(0,122,255,0.8);
-    font-family: "华文琥珀";
-}
 .shop_container {
     display: flex;
     flex-wrap: wrap; /* 允许换行 */
-    justify-content: space-between; /* 商品之间的空隙 */
-    margin: 0 -10px; /* 确保产品之间的间距，稍微外扩容器边距 */
+    justify-content: flex-start; /* 商品之间的空隙 */
+    margin: -10px; /* 取消外边距，使用内边距来创建间隙 */
 }
 
 .product-card {
-    width: calc(33.33% - 20px); /* 每行显示三列商品，减去边距 */
+    flex: 1 1 250px; /* 允许自适应宽度，最小宽度为 250px */
+    max-width: calc(20% - 20px); /* 可设置最大宽度 */
     box-sizing: border-box; /* 包含内边距和边框在内 */
     margin: 10px; /* 商品间隔 */
+    border: 1px solid rgba(200, 200, 200, 0.5); /* 设置边框 */
+    border-radius: 10px; /* 边框圆角 */
+    background: #FFFFFF; /* 背景颜色 */
 }
-
+.product-card {
+    display: flex; /* 使商品卡片使用 flexbox */
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 水平居中 */
+    text-align: center; /* 文字居中 */
+    justify-content: space-between; /* 使内容均匀排列 */
+    padding: 10px; /* 商品卡片内边距 */
+}
+.product-info {
+    display: flex; /* 使用 flexbox 排布 */
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 水平居中 */
+    text-align: center; /* 文字居中 */
+}
 .product-image {
-    width: 100%; /* 图片自适应宽度 */
-    height: auto; /* 自适应高度保持比例 */
+    width: 150px; /* 图片自适应宽度 */
+    height: 150px; /* 自适应高度保持比例 */
+}
+.s1 {
+    font-size: 20px; /* 增大字体大小 */
+    font-weight: bold; /* 加粗 */
 }
 
+.s2, .s3 {
+    display: inline-block; /* 使两个元素可以并排显示 */
+    font-size: 16px; /* 调整字体大小 */
+    margin: 5px; /* 添加间距 */
+}
+
+.s2 {
+    margin-right: 0; /* 去掉右边距 */
+}
+
+.s3 {
+    margin-left: 0; /* 去掉左边距 */
+}
 .qbtn,
 .add-to-cart {
     padding: 10px 15px; /* 更小的内边距 */
@@ -137,4 +124,21 @@ body{
 
 .add-to-cart {
     background: #007BFF; /* 加入购物车按钮的颜色 */
+}
+.navigation {
+    position: absolute; /* 绝对定位 */
+    top: 10px; /* 距离顶部10px */
+    right: 10px; /* 距离右侧10px */
+    z-index: 1000; /* 确保在其他元素之上 */
+}
+
+.navigation a {
+    margin: 0 10px; /* 水平间隔 */
+    text-decoration: none; /* 去掉下划线 */
+    color: #333; /* 改为您希望的颜色 */
+    font-weight: bold; /* 加粗字体 */
+}
+
+.navigation a:hover {
+    text-decoration: underline; /* 添加悬停效果 */
 }

@@ -146,6 +146,9 @@
 <div class="main_head">
     <div class="logo"><img src="img/logo3.png"></div>
     <div class="top_up">欢迎您：<%=session.getAttribute("upname")%>
+
+    </div>
+    <div class="navigation">
         <a href="cart.jsp">购物车</a>
         <a href="allShop.jsp">全部商品</a>
         <a href="logout">退出</a> <!-- 退出登录链接 -->
@@ -202,7 +205,7 @@
                 <tr>
                     <td>
                         <div class="cataddress">
-                            <input type="text" placeholder="请填写地址，例：6#505" id="dz">
+                            地址：<input type="text" placeholder="请填写地址，例：6#505" id="dz">
                         </div>
                     </td>
                 </tr>

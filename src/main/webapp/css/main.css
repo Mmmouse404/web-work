@@ -36,7 +36,7 @@ body {
 /* 用户信息设置 */
 .top_up {
     position: absolute;
-    top: 20%; /* 向下移动一些 */
+    top: 40%; /* 向下移动一些 */
     right: 2%;
     font-size: 20px; /* 顶部文字大小 */
     letter-spacing: 1px; /* 字母间距 */
@@ -124,4 +124,21 @@ body {
 
 .shop_table table img:hover {
     transform: scale(1.1); /* 悬停效果 */
+}
+.navigation {
+    position: absolute; /* 绝对定位 */
+    top: 10px; /* 距离顶部10px */
+    right: 10px; /* 距离右侧10px */
+    z-index: 1000; /* 确保在其他元素之上 */
+}
+
+.navigation a {
+    margin: 0 10px; /* 水平间隔 */
+    text-decoration: none; /* 去掉下划线 */
+    color: #333; /* 改为您希望的颜色 */
+    font-weight: bold; /* 加粗字体 */
+}
+
+.navigation a:hover {
+    text-decoration: underline; /* 添加悬停效果 */
 }
