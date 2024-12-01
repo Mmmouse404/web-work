@@ -92,6 +92,29 @@ public class Order_Use {
 
         return orders; // 返回查询到的订单列表
     }
+    // 按照商家获取订单
+    public static ArrayList<Order> getOrdersByUsername(String userName) throws SQLException {
+        ArrayList<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM Orders WHERE USERNAME = ?"; // 根据商家名称查询订单
+        Connection con = UTIL.getCon();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, userName); // 设置商家名称占位符
+        ResultSet RS = ps.executeQuery();
+
+        while (RS.next()) {
+            Order order = new Order();
+            order.setId(RS.getInt("ID"));
+            order.setGoodName(RS.getString("GOODNAME"));
+            order.setUserName(RS.getString("USERNAME"));
+            order.setAddress(RS.getString("ADDRESS"));
+            order.setNumber(RS.getInt("NUMBER"));
+            order.setPrice(RS.getString("PRICE"));
+            order.setmerchantname(RS.getString("MERCHANTNAME")); // 获取商家名称
+            orders.add(order); // 将订单加入列表
+        }
+
+        return orders; // 返回查询到的订单列表
+    }
     public static void deleteOrder(int orderId) throws SQLException {
         String sql = "DELETE FROM Orders WHERE ID = ?";
         try (Connection con = UTIL.getCon();

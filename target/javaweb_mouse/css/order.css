@@ -1,0 +1,29 @@
+
+table {
+     width: 100%; /* 使表格宽度占满容器 */
+     border-collapse: collapse; /* 去掉表格单元格之间的空隙 */
+     margin-top: 20px; /* 增加顶部间距 */
+ }
+
+th, td {
+    border: 1px solid #ccc; /* 边框颜色 */
+    padding: 10px; /* 单元格内边距 */
+    text-align: center; /* 文字居中 */
+}
+
+th {
+    background-color: #f2f2f2; /* 表头背景色 */
+    font-weight: bold; /* 表头加粗 */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* 偶数行背景色 */
+}
+
+tr:hover {
+    background-color: #e6e6e6; /* 鼠标悬停效果 */
+}
+
+.orderCheckbox {
+    cursor: pointer; /* 鼠标悬停时显示为可点击的手型 */
+}

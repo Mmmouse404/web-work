@@ -3,30 +3,53 @@
 <%@ page import="dao.Goodlist_Use" %>
 <%@ page import="dao.Goodlist" %>
 <%@ page import="java.util.List" %>
-
+<%@ page import="dao.User_Use" %>
+<%@ page import="java.sql.SQLException" %>
+<jsp:include page="increaseMoney.jsp" />
 <%
     // 检查用户是否已登录
-    if (session.getAttribute("upname") == null) {
-        response.sendRedirect("login.jsp"); // 如果未登录，重定向到登录页面
-        return; // 结束当前页面的执行
+    String username = (String) session.getAttribute("upname"); // 获取用户名
+    double userMoney = 0.0; // 存储用户余额
+
+    // 如果用户已登录，获取用户的金额
+    if (username != null) {
+        try {
+            userMoney = User_Use.getUserMoney(username);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 %>
 
 <html>
 <head>
+    <script>
+        function showIncreaseMoneyDialog() {
+            document.getElementById("increaseMoneyDialog").style.display = "block"; // 显示弹出框
+        }
+    </script>
     <title>全部商品</title>
     <link rel="stylesheet" href="css/allShop.css">
 </head>
 <body>
 <div class="main_head">
     <div class="logo"><img src="img/logo3.png" alt="Logo"></div>
-    <div class="top_up">
-        欢迎您：<c:out value="${sessionScope.upname}"/>
+    <div class="top_up">欢迎您：<%= username != null ? username : "游客" %>
+        <% if (username != null) { %>
+        | 账户余额：<%= userMoney %>元
+        <input type="button" value="增加金额" id="increaseMoneyBtn" onclick="showIncreaseMoneyDialog()"/> <!-- 调用函数显示对话框 -->
+
+        <% } %>
     </div>
     <div class="navigation">
         <a href="cart.jsp">购物车</a>
         <a href="mainFrame.jsp">推荐商品</a>
+        <a href="myOrders.jsp">订单</a>
+        <% if (username != null) { %>
         <a href="logout">退出</a> <!-- 退出登录链接 -->
+        <% } else { %>
+        <a href="login.jsp">登录</a> <!-- 登录链接 -->
+        <% } %>
         <a href="manageGood.jsp" class="login-button">商家</a> <!-- 新增登录按钮 -->
     </div>
 </div>

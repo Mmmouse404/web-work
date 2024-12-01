@@ -142,3 +142,21 @@ body {
 .navigation a:hover {
     text-decoration: underline; /* 添加悬停效果 */
 }
+#increaseMoneyDialog {
+    display: none;
+    position: fixed;
+    top: 20%; /* 调整位置 */
+    right: 5%; /* 调整位置 */
+    width: 250px; /* 调整框的宽度 */
+    border: 1px solid #ccc;
+    background-color: antiquewhite;
+    padding: 15px; /* 调整内边距 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    text-align: center; /* 文字居中 */
+    cursor: move; /* 鼠标悬停时显示可拖动的提示 */
+}
+
+#increaseMoneyDialog h3 {
+    margin: 0; /* 去掉标题的默认边距 */
+}

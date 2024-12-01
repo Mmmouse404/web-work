@@ -139,6 +139,7 @@
 .cart_wrap .selected-items-container {
     flex: 1; /* 让已选择商品容器占用剩余空间 */
 }
+
 .navigation {
     position: absolute; /* 绝对定位 */
     top: 10px; /* 距离顶部10px */
@@ -155,4 +156,34 @@
 
 .navigation a:hover {
     text-decoration: underline; /* 添加悬停效果 */
+}
+/* 用户信息设置 */
+.top_up {
+    position: absolute;
+    top: 8%; /* 向下移动一些 */
+    right: 5%;
+    font-size: 20px; /* 顶部文字大小 */
+    letter-spacing: 1px; /* 字母间距 */
+    margin-right: 20px;
+    font-family: Arial, sans-serif; /* 使用 Arial 字体 */
+    color: #333; /* 深灰色 */
+    text-align: end;
+}
+#increaseMoneyDialog {
+    display: none;
+    position: fixed;
+    top: 20%; /* 调整位置 */
+    right: 5%; /* 调整位置 */
+    width: 250px; /* 调整框的宽度 */
+    border: 1px solid #ccc;
+    background-color: antiquewhite;
+    padding: 15px; /* 调整内边距 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    text-align: center; /* 文字居中 */
+    cursor: move; /* 鼠标悬停时显示可拖动的提示 */
+}
+
+#increaseMoneyDialog h3 {
+    margin: 0; /* 去掉标题的默认边距 */
 }

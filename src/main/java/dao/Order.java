@@ -24,6 +24,9 @@ public class Order {
         this.id = id;
     }
 
+    public String getIdString() {
+        return id+"";
+    }
     public String getGoodName() {
         return goodname;
     }

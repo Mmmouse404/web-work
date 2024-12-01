@@ -169,5 +169,24 @@ public class User_Use {
             throw e; // 抛出异常以便进一步处理
         }
     }
+    public static void incrementUserMoney(String username, double amount) throws SQLException {
+        // 首先获取当前余额
+        double currentBalance = getUserMoney(username);
+        // 计算新的余额
+        double newBalance = currentBalance + amount;
+
+        // 更新数据库中的余额
+        String sql = "UPDATE Users SET MONEY = ? WHERE NAME = ?";
+
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setDouble(1, newBalance); // 更新新的余额
+            ps.setString(2, username); // 设置用户名
+            ps.executeUpdate(); // 执行更新操作
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+    }
 
 }

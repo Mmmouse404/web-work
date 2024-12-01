@@ -97,7 +97,7 @@
                             <td><%= aa.getAddress() %></td>
                             <td><%= aa.getNumber() %></td>
                             <td><%= aa.getPrice() %>元</td>
-                            <td><input type="button" class="indentbtn" value="未发货"></td>
+                            <td><input type="button" class="indentbtn" value="?"></td>
                         </tr>
                         <% } %>
                     </table>
