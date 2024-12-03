@@ -33,12 +33,12 @@ public class registerServlet extends HttpServlet {
                 }
                 else{   //存在相同的账号名
                     p.println("注册失败！已存在该账号名");
-                    res.setHeader("refresh","3;http://localhost:8080/javaweb_mouse_war_exploded/register.jsp");
+                    res.setHeader("refresh","3;http://8.134.196.79:8080/javaweb_mouse_war_exploded/register.jsp");
                 }
             }
             else{//存在了相同的id
                 p.println("注册失败！已存在该账号");
-                res.setHeader("refresh","3;http://localhost:8080/javaweb_mouse_war_exploded/register.jsp");
+                res.setHeader("refresh","3;http://8.134.196.79:8080/javaweb_mouse_war_exploded/register.jsp");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

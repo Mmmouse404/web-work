@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dao.Order" %>
 <%@ page import="dao.Order_Use" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -85,7 +86,12 @@
                         </tr>
                         <%
                             String merchantName = (String) session.getAttribute("merchantname"); // 获取当前商家名称
-                            ArrayList<Order> RR = Order_Use.getOrdersByMerchant(merchantName); // 获取当前商家的订单
+                            ArrayList<Order> RR = null; // 获取当前商家的订单
+                            try {
+                                RR = Order_Use.getOrdersByMerchant(merchantName);
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
                             int mnum = RR.size(); // 获取订单数量
                             for (Order aa : RR) {
                         %>

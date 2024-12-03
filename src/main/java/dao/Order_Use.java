@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Order_Use {
     // 查询订单
     public static ArrayList<Order> getOrders() throws SQLException {
-        String sql = "SELECT * FROM Orders";
+        String sql = "SELECT * FROM orders";
         ArrayList<Order> arr = new ArrayList<>();
         Order ss;
         try {
@@ -37,7 +37,7 @@ public class Order_Use {
 
 
     public static int getGoodNumber() throws SQLException { // 获取订单数量
-        String sql = "SELECT COUNT(*) FROM Orders"; // 直接使用COUNT进行查询
+        String sql = "SELECT COUNT(*) FROM orders"; // 直接使用COUNT进行查询
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet RS = ps.executeQuery();
@@ -53,7 +53,7 @@ public class Order_Use {
         Connection con = UTIL.getCon();
 
         // 写在数据库中运行的 SQL
-        String sql = "INSERT INTO Orders (GOODNAME, USERNAME, ADDRESS, NUMBER, PRICE, MERCHANTNAME) " +
+        String sql = "INSERT INTO orders (GOODNAME, USERNAME, ADDRESS, NUMBER, PRICE, MERCHANTNAME) " +
                 "VALUES (?, ?, ?, ?, ?, ?)"; // 添加 merchantname
 
         // 用占位符，准备执行
@@ -72,7 +72,7 @@ public class Order_Use {
     // 按照商家获取订单
     public static ArrayList<Order> getOrdersByMerchant(String merchantName) throws SQLException {
         ArrayList<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM Orders WHERE MERCHANTNAME = ?"; // 根据商家名称查询订单
+        String sql = "SELECT * FROM orders WHERE MERCHANTNAME = ?"; // 根据商家名称查询订单
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, merchantName); // 设置商家名称占位符
@@ -95,7 +95,7 @@ public class Order_Use {
     // 按照商家获取订单
     public static ArrayList<Order> getOrdersByUsername(String userName) throws SQLException {
         ArrayList<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM Orders WHERE USERNAME = ?"; // 根据商家名称查询订单
+        String sql = "SELECT * FROM orders WHERE USERNAME = ?"; // 根据商家名称查询订单
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, userName); // 设置商家名称占位符
@@ -116,7 +116,7 @@ public class Order_Use {
         return orders; // 返回查询到的订单列表
     }
     public static void deleteOrder(int orderId) throws SQLException {
-        String sql = "DELETE FROM Orders WHERE ID = ?";
+        String sql = "DELETE FROM orders WHERE ID = ?";
         try (Connection con = UTIL.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, orderId); // 设置要删除的订单 ID

@@ -57,8 +57,8 @@
 <div class="main_down">
     <h1>全部商品:</h1>
     <div class="shop_container"> <!-- 商品容器 -->
-        <c:set var="goodList" value="${Goodlist_Use.getGoodList()}" />
-        <c:forEach items="${goodList}" var="a">
+        <c:set var="Goodlist" value="${Goodlist_Use.getGoodList()}" />
+        <c:forEach items="${Goodlist}" var="a">
             <div class="product-card"> <!-- 商品卡片 -->
                 <a href="mouseShop.jsp?Sid=${a.getId()}">
                     <img class="product-image" src="<c:out value="${a.getImage()}" />" alt="<c:out value="${a.getGoodName()}" />" />

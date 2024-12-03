@@ -10,7 +10,7 @@
   <packaging>war</packaging>
 
   <name>javaweb_mouse Maven Webapp</name>
-  <url>http://localhost:8080/javaweb_mouse_war_exploded</url>
+  <url>http://8.134.196.79:8080/javaweb_mouse_war_exploded</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

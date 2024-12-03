@@ -23,7 +23,7 @@
 
 <%
     String redirectPage = userType.equals("merchant") ? "manageGood.jsp" : "mainFrame.jsp";
-    response.setHeader("refresh", "1;http://localhost:8080/javaweb_mouse_war_exploded/" + redirectPage);
+    response.setHeader("refresh", "1;http://8.134.196.79:8080/javaweb_mouse_war_exploded/" + redirectPage);
 %>
 <div style="position:absolute;left: 20%;top: 30%"> <img src="img/kx2.jpg" width="185" height="211" /></div>
 <div style="position:absolute;left: 70%;top: 30%"> <img src="img/kx2.jpg" width="185" height="211"/></div>

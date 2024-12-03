@@ -13,7 +13,7 @@ public class Cart_Use {
     // 增加商品到购物车
     public static void addToCart(Cart cartItem) throws SQLException {
         Connection con = UTIL.getCon();
-        String sql = "INSERT INTO Cart (goodname, username, address, number, price, merchantname) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cart (goodname, username, address, number, price, merchantname) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, cartItem.getGoodName());
         ps.setString(2, cartItem.getUserName());
@@ -27,7 +27,7 @@ public class Cart_Use {
     // 获取用户的购物车商品
     public static ArrayList<Cart> getCartItems(String username) throws SQLException {
         ArrayList<Cart> cartItems = new ArrayList<>();
-        String sql = "SELECT * FROM Cart WHERE username = ?";
+        String sql = "SELECT * FROM cart WHERE username = ?";
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, username);
@@ -47,14 +47,14 @@ public class Cart_Use {
     }
     public static void deleteCartItemById(int id) throws SQLException {
         Connection con = UTIL.getCon();
-        String sql = "DELETE FROM Cart WHERE id = ?";
+        String sql = "DELETE FROM cart WHERE id = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
         ps.executeUpdate();
     }
     public static void deleteCartItem(String username, String goodName) throws SQLException {
         Connection con = UTIL.getCon();
-        String sql = "DELETE FROM Cart WHERE username = ? AND goodname = ?";
+        String sql = "DELETE FROM cart WHERE username = ? AND goodname = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, username);
         ps.setString(2, goodName);
@@ -63,7 +63,7 @@ public class Cart_Use {
 
     public static void clearCart(String username) throws SQLException {
         Connection con = UTIL.getCon();
-        String sql = "DELETE FROM Cart WHERE username = ?";
+        String sql = "DELETE FROM cart WHERE username = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, username);
         ps.executeUpdate();

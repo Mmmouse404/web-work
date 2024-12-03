@@ -15,7 +15,7 @@
     <br><br><font size="+2">正在返回登录页面......</font>
 </b></p>
 <%session.setAttribute("upname",null);%>
-<%response.setHeader("refresh","1;http://localhost:8080/javaweb_mouse_war_exploded/login.jsp");  //3秒后，重定向登录页面%>
+<%response.setHeader("refresh","1;http://8.134.196.79:8080/javaweb_mouse_war_exploded/login.jsp");  //3秒后，重定向登录页面%>
 <div style="position:absolute;left: 20%;top: 30%"> <img src="img/伤心.jpg" width="185" height="211" /></div>
 <div style="position:absolute;left: 70%;top: 30%"> <img src="img/伤心.jpg" width="185" height="211"/></div>
 </body>

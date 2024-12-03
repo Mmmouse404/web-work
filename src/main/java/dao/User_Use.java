@@ -16,7 +16,7 @@ public class User_Use {
 
     public static void in(String loginname,String loginid,String loginpass,double money) throws SQLException {  //数据库的插入功能
         Connection con= UTIL.getCon();//建立 连接
-        String sql= "insert into Users (NAME,ID,PASSWORD,MONEY) " +
+        String sql= "insert into users (NAME,ID,PASSWORD,MONEY) " +
                 "values(?,?,?,?)";
         //设置变量，用?占位符  等下会传入值过来
         PreparedStatement gg=con.prepareStatement(sql);
@@ -30,7 +30,7 @@ public class User_Use {
     }
     public static boolean selectName(String mname) throws SQLException {  //查询name
         Connection con=UTIL.getCon();
-        String sql="select * from Users";
+        String sql="select * from users";
         PreparedStatement gg=con.prepareStatement(sql);
         ResultSet rs1=gg.executeQuery();
         try{
@@ -50,7 +50,7 @@ public class User_Use {
     public static boolean selectId(String iid) throws SQLException {//查询id
         number1=0;   //清零
         Connection con=UTIL.getCon();
-        String sql="select * from Users";
+        String sql="select * from users";
         PreparedStatement gg=con.prepareStatement(sql);
         ResultSet rs2=gg.executeQuery();
         try{
@@ -71,7 +71,7 @@ public class User_Use {
     public static boolean selectPass(String pass) throws SQLException {//查询密码
         number2=0;  //清0
         Connection con=UTIL.getCon();
-        String sql="select * from Users";
+        String sql="select * from users";
         PreparedStatement gg=con.prepareStatement(sql);
         ResultSet rs3=gg.executeQuery();
         try{
@@ -91,7 +91,7 @@ public class User_Use {
     }
     public static String returnname(String id) throws SQLException {   //根据id找账号名
         Connection con = UTIL.getCon();
-        String sql = "select * from Users where id=" + id;
+        String sql = "select * from users where id=" + id;
         PreparedStatement pstmt = con.prepareStatement(sql);
         ResultSet rs4 = pstmt.executeQuery();
         String name = null;
@@ -103,7 +103,7 @@ public class User_Use {
     }
     //记录基每行数据存放到值对象，然后把值对象存放一个链表
     public static ArrayList<User> getListWithVOFromRS() throws SQLException{
-        String sql = "select * from Users";
+        String sql = "select * from users";
         ArrayList<User> arr = new ArrayList<>();
         User uu = null;
         try {
@@ -124,7 +124,7 @@ public class User_Use {
     }
     //返回用户数
     public static int getUsernumber() throws SQLException {
-        String sql = "select * from Users";
+        String sql = "select * from users";
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet RS=ps.executeQuery();
@@ -137,7 +137,7 @@ public class User_Use {
 
     }
     public static double getUserMoney(String username) throws SQLException {
-        String sql = "SELECT MONEY FROM Users WHERE NAME = ?";
+        String sql = "SELECT MONEY FROM users WHERE NAME = ?";
         double money = 0.0;
 
         try (Connection con = UTIL.getCon();
@@ -157,7 +157,7 @@ public class User_Use {
     }
 
     public static void updateUserMoney(String username, double newBalance) throws SQLException {
-        String sql = "UPDATE Users SET MONEY = ? WHERE NAME = ?";
+        String sql = "UPDATE users SET MONEY = ? WHERE NAME = ?";
 
         try (Connection con = UTIL.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -176,7 +176,7 @@ public class User_Use {
         double newBalance = currentBalance + amount;
 
         // 更新数据库中的余额
-        String sql = "UPDATE Users SET MONEY = ? WHERE NAME = ?";
+        String sql = "UPDATE users SET MONEY = ? WHERE NAME = ?";
 
         try (Connection con = UTIL.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {

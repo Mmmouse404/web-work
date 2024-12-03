@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 public class Goodlist_Use {
     public static ArrayList<Goodlist> getGoodList() throws SQLException{    //查询全部商品
-        String sql = "select * from Goodlists";
+        String sql = "select * from goodlists";
         ArrayList<Goodlist> arr = new ArrayList<>();
         Goodlist gs = null;
         try {
@@ -35,7 +35,7 @@ public class Goodlist_Use {
     }
     public static ArrayList<Goodlist> getGoodListByKind(String category, String keywords) throws SQLException {
         ArrayList<Goodlist> arr = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("SELECT * FROM Goodlists WHERE 1=1"); // 创建基础查询
+        StringBuilder sql = new StringBuilder("SELECT * FROM goodlists WHERE 1=1"); // 创建基础查询
 
         // 根据类别添加条件
         if (category != null && !category.isEmpty()) {
@@ -76,7 +76,7 @@ public class Goodlist_Use {
         return arr;
     }
     public static int getGoodNumber() throws SQLException {           //得到商品数量
-        String sql = "select * from Goodlists";
+        String sql = "select * from goodlists";
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet RS=ps.executeQuery();
@@ -89,7 +89,7 @@ public class Goodlist_Use {
     }
     public static ArrayList<String> getAllKinds() throws SQLException {
         ArrayList<String> kinds = new ArrayList<>();
-        String sql = "SELECT DISTINCT kind FROM Goodlists"; // 获取不同的商品分类
+        String sql = "SELECT DISTINCT kind FROM goodlists"; // 获取不同的商品分类
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet RS = ps.executeQuery();
             while (RS.next()) {
@@ -101,7 +101,7 @@ public class Goodlist_Use {
         return kinds;
     }
     public  static String searchNameById(String id) throws SQLException{  //根据id查商品名字
-        String sql = "select goodname from Goodlists where id="+id;
+        String sql = "select goodname from goodlists where id="+id;
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet RS=ps.executeQuery();
@@ -112,7 +112,7 @@ public class Goodlist_Use {
         return goodname;
     }
     public  static String searchPriceById(String id) throws SQLException{  //根据id查商品价格
-        String sql = "select price from Goodlists where id="+id;
+        String sql = "select price from goodlists where id="+id;
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet RS=ps.executeQuery();
@@ -123,7 +123,7 @@ public class Goodlist_Use {
         return price;
     }
     public  static String searchImageByName(String goodname) throws SQLException{  //根据id查商品图片
-        String sql = "select image from Goodlists where goodname=?";
+        String sql = "select image from goodlists where goodname=?";
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, goodname); // 设置查询参数
@@ -135,7 +135,7 @@ public class Goodlist_Use {
         return image;
     }
     public  static String searchmerchantnameById(String id) throws SQLException{  //根据id查商品图片
-        String sql = "select merchantname from Goodlists where id="+id;
+        String sql = "select merchantname from goodlists where id="+id;
         Connection con = UTIL.getCon();
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet RS=ps.executeQuery();
@@ -146,7 +146,7 @@ public class Goodlist_Use {
         return merchantname;
     }
     public static Goodlist searchGoodById(String id) throws SQLException {
-        String sql = "SELECT * FROM Goodlists WHERE id = ?";
+        String sql = "SELECT * FROM goodlists WHERE id = ?";
         Goodlist good = null;
 
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -174,7 +174,7 @@ public class Goodlist_Use {
         //先建立 连接
         Connection con=UTIL.getCon();//
         //写在数据库中运行的 sql  insert ... 对于java代码来说，其实就是一个字符串
-        String sql="insert into Goodlists (goodname,kind,image,price,stock,merchantname)  " +
+        String sql="insert into goodlists (goodname,kind,image,price,stock,merchantname)  " +
                 "values (?,?,?,?,?,?) ";
         //用占位符 每个?是一个占位符,等下会传入的值
         PreparedStatement ps=con.prepareStatement(sql);
@@ -189,7 +189,7 @@ public class Goodlist_Use {
         System.out.println(m);
     }
     public static void deleteGood(String id) throws SQLException {
-        String sql = "DELETE FROM Goodlists WHERE id = ?";
+        String sql = "DELETE FROM goodlists WHERE id = ?";
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, id);
             ps.executeUpdate(); // 执行删除操作
@@ -200,7 +200,7 @@ public class Goodlist_Use {
     }
     public static ArrayList<Goodlist> getGoodsByMerchantName(String merchantName) throws SQLException {
         ArrayList<Goodlist> arr = new ArrayList<>();
-        String sql = "SELECT * FROM Goodlists WHERE merchantname = ?"; // 根据商家名称过滤
+        String sql = "SELECT * FROM goodlists WHERE merchantname = ?"; // 根据商家名称过滤
 
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, merchantName); // 设置查询参数
@@ -223,7 +223,7 @@ public class Goodlist_Use {
         return arr; // 返回该商家的商品列表
     }
     public static boolean checkStock(String goodname, int quantity) throws SQLException {
-        String sql = "SELECT stock FROM Goodlists WHERE goodname = ?";
+        String sql = "SELECT stock FROM goodlists WHERE goodname = ?";
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, goodname);
             ResultSet rs = ps.executeQuery();
@@ -235,7 +235,7 @@ public class Goodlist_Use {
         return false; // 如果没有找到相应的商品
     }
     public static void updateGood(Goodlist good) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE Goodlists SET goodname = ?, kind = ?, image = ?, price = ?, stock = ? WHERE id = ?";
+        String sql = "UPDATE goodlists SET goodname = ?, kind = ?, image = ?, price = ?, stock = ? WHERE id = ?";
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, good.getGoodName());
             ps.setString(2, good.getKind());
@@ -247,7 +247,7 @@ public class Goodlist_Use {
         }
     }
     public static void updateStock(String goodname, int quantity) throws SQLException {
-        String sql = "UPDATE Goodlists SET stock = stock - ? WHERE goodname = ?";
+        String sql = "UPDATE goodlists SET stock = stock - ? WHERE goodname = ?";
         try (Connection con = UTIL.getCon(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, quantity); // 减去的数量
             ps.setString(2, goodname); // 设置商品ID
