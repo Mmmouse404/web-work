@@ -16,8 +16,8 @@ public class Merchant_Use {
         String sql = "INSERT INTO merchants (ID,merchantname, PASSWORD) VALUES (?,?, ?)";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, merchantid);
-        ps.setString(1, merchantname);
-        ps.setString(2, password);
+        ps.setString(2, merchantname);
+        ps.setString(3, password);
         ps.executeUpdate();
     }
 

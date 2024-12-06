@@ -13,30 +13,24 @@ import java.sql.SQLException;
 @WebServlet("/addToCart")
 public class addToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
-
+        request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8");
         String goodName = request.getParameter("goodname");
         String username = request.getParameter("username");
         String address = request.getParameter("address");
         String numberStr = request.getParameter("number");
         String price = request.getParameter("price");
         String merchantname = request.getParameter("merchantname");
-
         int number;
         try {
             number = Integer.parseInt(numberStr);
             if (number <= 0) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 response.getWriter().write("数量必须大于0");
-                return;
-            }
+                return;}
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("数量格式不正确");
-            return;
-        }
-
+            return;}
         // 创建一个 Cart 对象
         Cart cartItem = new Cart();
         cartItem.setGoodName(goodName);
@@ -45,7 +39,6 @@ public class addToCartServlet extends HttpServlet {
         cartItem.setNumber(number);
         cartItem.setPrice(price);
         cartItem.setmerchantname(merchantname); // Set merchantname
-
         try {
             Cart_Use.addToCart(cartItem); // 将商品添加到购物车
             response.setStatus(HttpServletResponse.SC_OK); // 设置响应状态为成功
@@ -53,7 +46,6 @@ public class addToCartServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 设置为500错误
-            response.getWriter().write("数据库异常，加入购物车失败");
-        }
+            response.getWriter().write("数据库异常，加入购物车失败");}
     }
 }

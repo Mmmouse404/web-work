@@ -107,7 +107,6 @@
                 alert("请确保所有信息都填写正确！");
                 return;
             }
-
             var param = "goodname=" + encodeURIComponent(goodname)
                 + "&username=" + encodeURIComponent(username)
                 + "&address=" + encodeURIComponent(address)

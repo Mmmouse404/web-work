@@ -152,7 +152,7 @@
                                     <td><%= order.getAddress() %></td>
                                     <td><%= order.getNumber() %></td>
                                     <td class="status
-                                        <% if ("未发货".equals(order.getStatus())) { %>
+                                        <% if ("未发货".equals(order.getStatus())|| order.getStatus() == null) { %>
                                             status-pending
                                         <% } else if ("已发货".equals(order.getStatus())) { %>
                                             status-shipped
@@ -160,11 +160,11 @@
                                             status-delivered
                                         <% } %>
                                         ">
-                                        <%= order.getStatus() %>
+                                        <%= order.getStatus()!= null ? order.getStatus() : "未发货" %>
                                     </td>
                                     <td><%= order.getPrice() %>元</td>
                                     <td>
-                                        <% if ("未发货".equals(order.getStatus())) { %>
+                                        <% if ("未发货".equals(order.getStatus())|| order.getStatus() == null) { %>
                                         <input type="button" value="发货" onclick="shipOrder(<%= order.getId() %>, '<%= order.getUserName() %>')" />
                                         <% } %>
                                     </td>
