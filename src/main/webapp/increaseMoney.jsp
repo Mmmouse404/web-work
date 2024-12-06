@@ -13,8 +13,6 @@
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    } else {
-        out.println("<p>请先登录以增加金额。</p>");
     }
 %>
 

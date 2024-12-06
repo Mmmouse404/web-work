@@ -1,25 +1,35 @@
 .picture{
     position: relative;
     float: left;
-    width: 300px;
-    height: 300px;
+    margin-right: 20px; /* 图片与表格之间的间距 */
 }
-
+.picture img {
+    max-width: 300px; /* 增大图片的最大宽度 */
+    max-height: 300px; /* 增大图片的最大高度 */
+    margin-top: 10px;
+}
+* {
+    box-sizing: border-box; /* 增加盒模型支持 */
+}
 .mas_table{
-    float: right;
+    flex: 1; /* 垂直排列，并允许 mas_table 适应剩余空间 */
     margin-left: 50px;
+    display: flex; /* 同样使用 Flexbox */
+    flex-direction: column; /* 在这里保持原来的垂直显示 */
+    min-width: 300px; /* 最小宽度以确保足够空间 */
+    max-width: 600px; /* 设置最大宽度，根据需要调整 */
 }
 .mas_table table{
     min-height: 400px;
 }
 
 .shopname h1{
-    font-size: 50px;
+    font-size: 30px;
     color: black;
     margin-left: 20px;
 }
 .shopname p{
-    font-size: 10px;
+    font-size: 14px;
     color: black;
 }
 .snum{
@@ -56,8 +66,8 @@
     padding: 10px 20px;
     font-size: 16px;
     letter-spacing: 1px;
-    background: #FFFFFF;
-    color: black;
+    background: cornflowerblue;
+    color: white;
     width: 45%;
     font-weight: 600;
     margin-top: 30px;
@@ -67,18 +77,22 @@
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 10px;
-    margin-left: 20px;
 
+    cursor: pointer; /* 鼠标指针样式 */
 }
-.mainwdow{
+.mainwdow {
+    display: flex; /* 使用 Flexbox */
+    justify-content: center; /* 水平居中 */
+    align-items: flex-start; /* 相关项目顶端对齐 */
     position: relative;
-    margin-left: 20%;
-    margin-top: 10%;
+    margin-left: 5%;
+    margin-top: 0;
+    margin: 0 auto; /* 使整体居中 */
     width: 1000px;
-    height: 400px;
+    padding: 20px; /* 加入内边距，形成框的效果 */
+    border: 1px solid #ccc; /* 为整个框体添加边框 */
+    border-radius: 10px; /* 圆角效果 */
+    background-color: #e9ecf8; /* 设置背景颜色 */
 }
 /*地址输入框*/
 .cataddress input{
@@ -93,12 +107,12 @@ border-right: 1px solid rgba(255, 255, 255, 0.2);
 border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 font-size: 16px;
 letter-spacing: 1px;
-color: #fff;
+color: black;
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 margin-top: 30px;
 }
 .cataddress input::placeholder{
-    color: #FFFFFF;
+    color: black;
 
 }
 .goods_num_wrap span{
@@ -107,7 +121,7 @@ margin-top: 30px;
     display: inline-block;
     border:1px solid #999;
     cursor: pointer;
-    text-align: center;
+    text-align: left;
 }
 .goods_num_wrap input{
     width:36px;
@@ -121,12 +135,10 @@ margin-top: 30px;
 }
 .goods_price{
     color: black;
-    font-size: 22px;
 }
 .good_total{
-    color: red;
-    font-size: 40px;
-    font-family: 华文琥珀;
+    color: #fb4343;
+    font-size: 22px;
     margin-top: 10px;
 }
 td{
@@ -148,4 +160,89 @@ td{
 
 .navigation a:hover {
     text-decoration: underline; /* 添加悬停效果 */
+}
+.main_down {
+    max-height: 400px; /* 设置最大高度 */
+    overflow-y: auto; /* 启用垂直滚动条 */
+}
+
+.table-scroll {
+    overflow-x: auto; /* 启用水平滚动条 */
+    width: 100%; /* 根据需要设置宽度 */
+}
+.button-container {
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: flex-start; /* 均分剩余空间 */
+    padding: 0 10px; /* 增加左右内边距，使按钮与两边有距离 */
+}
+
+.button-container input,
+.button-container button {
+    flex: 0 1 20px; /* 设置按钮的基础宽度，并启用自适应 */
+    font-size: 14px; /* 设置字体大小 */
+    margin-right: 5px; /* 设置按钮之间的距离 */
+    border-radius: 5px; /* 增加圆角效果 */
+}
+
+.button-container button:last-child {
+    margin-right: 0; /* 确保最后一个按钮不加右边距 */
+}
+
+.add-cart-button {
+    background-color: cornflowerblue; /* 蓝色背景 */
+    color: white; /* 白色文字 */
+    padding: 5px 10px; /* 设置内边距 */
+    border: none; /* 去掉边框 */
+    border-radius: 5px; /* 圆角效果 */
+    font-size: 16px; /* 字体大小 */
+    cursor: pointer; /* 鼠标指针样式 */
+}
+.back-button:hover,
+.add-cart-button:hover {
+    opacity: 0.9; /* 鼠标悬停时的效果 */
+}
+
+td {
+    color: black; /* 一致的字体颜色 */
+}
+.product-info {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+}
+
+.address-info {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+}
+.info-container {
+    display: flex; /* 采用 Flexbox 布局 */
+    justify-content: space-between; /* 均匀分配空间 */
+    padding: 10px 0; /* 设置上下内边距 */
+    width: 600px;
+}
+
+.info-item {
+    flex: 1; /* 每个项占用相等的空间 */
+    text-align: center; /* 文本居中显示 */
+}
+.mas_table table {
+    width: 100%; /* 确保表格占满父容器 */
+    border-collapse: separate; /* 支持 border-spacing */
+    border-spacing: 0 15px; /* 设置行与行之间的间距 */
+}
+
+.mas_table td {
+    padding: 10px; /* 为单元格添加内边距 */
+    vertical-align: middle; /* 垂直居中 */
+}
+.status-pending {
+    background-color: yellow; /* 未发货状态为黄色 */
+}
+
+.status-shipped {
+    background-color: lightblue; /* 已发货状态为蓝色 */
+}
+
+.status-delivered {
+    background-color: lightgreen; /* 已收货状态为绿色 */
 }

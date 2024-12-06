@@ -1,11 +1,11 @@
 .sidebar-wrap{float: left;width: 189px;min-height:700px;background: #f2f2f2;border-right:1px solid #ccc;/*cursor:e-resize;*/}
 .main-wrap{margin-left: 190px;min-height:100%;}
-.sidebar-title{height: 40px;line-height: 40px;text-indent:1em;font-size: 24px;text-align: left;}
-.sidebar-title h1{font-weight: normal;}
+.sidebar-title{height: 40px;line-height: 40px;text-indent:1em;font-size: 16px;text-align: left;}
+.sidebar-title h1{font-weight: normal;color: black;}
 .sidebar-title a{display: block}
 .sidebar-title a:hover{
-    background: red;
-    color: #FFFFFF;
+    background: white;
+    color: cornflowerblue;
 }
 .sidebar-content{padding-top: 5px;}
 .sidebar-content ul{display: none;}
@@ -20,11 +20,21 @@
 .crumb-wrap{height: 40px;line-height: 39px;border-bottom: 1px solid #e5e5e5;background: #f5f5f5;}
 .crumb-list{padding-left: 12px;}
 .crumb-step{margin: 0 5px;color: #b2c2e0;font-family: serif;}
-.search-wrap{padding: 15px 0;border-bottom: 1px solid #e5e5e5;}
+.search-wrap{padding: 15px 0;border-bottom: 1px solid #e5e5e5;top: 40px;}
 .search-tab tr{line-height: 35px;}
 .search-tab th{text-align: right;padding-right:10px;font-weight: normal;}
 .search-tab td{padding: 0 5px;}
-.common-text{height: 23px;line-height: 23px;padding: 2px 4px;border: 1px solid #ccc;background: #fff;border-radius:5px;}
+.common-text,
+.common-textarea{
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 1px 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius:5px;
+}
 .result-wrap{padding:10px 20px;border-bottom: 1px solid #e5e5e5;}
 .result-title{line-height: 35px;padding-bottom: 5px;overflow: hidden;}
 .comment-title{line-height: 35px;margin-bottom: 10px;overflow: hidden;}
@@ -60,3 +70,27 @@
 .res-lab{color: #909090;}
 .res-info{font-size: 15px;}
 .sort-input{width: 25px;text-align: center;}
+
+.search-and-back {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.search-and-back .search-content {
+    flex: 1;
+    margin-right: 20px;
+}
+.search-and-back .back-button {
+    margin-left: 20px;
+}
+.status-pending {
+     background-color: yellow; /* 未发货状态为黄色 */
+ }
+
+.status-shipped {
+    background-color: lightblue; /* 已发货状态为蓝色 */
+}
+
+.status-delivered {
+    background-color: lightgreen; /* 已收货状态为绿色 */
+}

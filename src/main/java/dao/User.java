@@ -5,6 +5,7 @@ public class User {
     String name;  //用户名
     String password;  //密码
     double money;
+    String email;  //邮箱
     public int getId() {
         return id;
     }
@@ -35,5 +36,8 @@ public class User {
         this.money = money;
     }
 
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 
 }

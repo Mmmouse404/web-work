@@ -16,8 +16,8 @@ body {
     position: absolute;
     left: 2%;
     top: 0;
-    width: 220px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
 }
 
 .logo img {
@@ -29,10 +29,9 @@ body {
     position: absolute;
     top: 40%;
     right: 0;
-    font-size: 36px;
+    font-size: 16px;
     letter-spacing: 5px;
     margin-right: 100px;
-    font-family: "华文琥珀";
     width: 50%;
     height: 70%;
     text-align: end;
@@ -44,34 +43,36 @@ body {
 
 .main_down {
     position: absolute;
-    top: 12%;
+    top: 10%;
     left: 4%;
     width: 92%;
-    min-height: 850px;
+    min-height: 750px;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column; /* 垂直布局 */
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 25px rgba(0, 122, 255, 0.9);
+    box-shadow: 0 0 25px rgba(60, 152, 248, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 100px;
+    border-radius: 25px;
 }
 
 .shop_container {
     display: flex;
     flex-wrap: wrap; /* 允许换行 */
     justify-content: flex-start; /* 商品之间的空隙 */
-    margin: -10px; /* 取消外边距，使用内边距来创建间隙 */
+    margin: -5px; /* 取消外边距，使用内边距来创建间隙 */
+    margin-top: 0;
 }
 
 .product-card {
     flex: 1 1 250px; /* 允许自适应宽度，最小宽度为 250px */
-    max-width: calc(20% - 20px); /* 可设置最大宽度 */
+    max-width: calc(20% - 25px); /* 可设置最大宽度 */
     box-sizing: border-box; /* 包含内边距和边框在内 */
-    margin: 10px; /* 商品间隔 */
+    margin: 5px; /* 商品间隔 */
     border: 1px solid rgba(200, 200, 200, 0.5); /* 设置边框 */
     border-radius: 10px; /* 边框圆角 */
     background: #FFFFFF; /* 背景颜色 */
+    max-height: 300px; /* 最大高度 */
 }
 .product-card {
     display: flex; /* 使商品卡片使用 flexbox */
@@ -79,7 +80,7 @@ body {
     align-items: center; /* 水平居中 */
     text-align: center; /* 文字居中 */
     justify-content: space-between; /* 使内容均匀排列 */
-    padding: 10px; /* 商品卡片内边距 */
+    padding: 5px; /* 商品卡片内边距 */
 }
 .product-info {
     display: flex; /* 使用 flexbox 排布 */
@@ -88,8 +89,8 @@ body {
     text-align: center; /* 文字居中 */
 }
 .product-image {
-    width: 150px; /* 图片自适应宽度 */
-    height: 150px; /* 自适应高度保持比例 */
+    width: 130px; /* 图片自适应宽度 */
+    height: 130px; /* 自适应高度保持比例 */
 }
 .s1 {
     font-size: 20px; /* 增大字体大小 */
@@ -160,4 +161,13 @@ body {
 
 #increaseMoneyDialog h3 {
     margin: 0; /* 去掉标题的默认边距 */
+}
+.back-button {
+    background-color: blue; /* 蓝色背景 */
+    color: white; /* 白色字体 */
+    border: none; /* 去掉边框 */
+    padding: 10px 15px; /* 内边距 */
+    margin-left: 10px; /* 与logo间距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
 }

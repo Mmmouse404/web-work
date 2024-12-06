@@ -20,6 +20,7 @@ public class registerServlet extends HttpServlet {
         String loginname=req.getParameter("loginname");
         String loginid=req.getParameter("loginid");
         String loginpass=req.getParameter("loginpass");
+        String email=req.getParameter("email");
         PrintWriter p=res.getWriter();//可以把信息输出给客户端界面
 
         HttpSession session = req.getSession();
@@ -27,7 +28,7 @@ public class registerServlet extends HttpServlet {
 
             if(!User_Use.selectId(loginid)){  //如果不存在相同的id
                 if(!User_Use.selectName(loginname)) {   //不存在相同的账号名
-                    User_Use.in(loginname,loginid,loginpass,0);
+                    User_Use.in(loginname,loginid,loginpass,0,email);
                     session.setAttribute("loginname", loginname);   //定义全局变量名
                     res.sendRedirect("registersucc.jsp");
                 }
@@ -42,7 +43,7 @@ public class registerServlet extends HttpServlet {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            p.println("操作数据库发生错误");
+            p.println("操作数据库发生错误: " + throwables.getMessage()); // 提示用户
         }
 
     }

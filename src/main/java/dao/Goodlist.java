@@ -8,6 +8,7 @@ public class Goodlist {
     String price;        //商品价格
     String stock;        //库存
     String merchantname;
+    String description;
     public String getId() {return id;}
 
     public void setId(String id) {
@@ -55,4 +56,6 @@ public class Goodlist {
     public String getMerchantName() {return merchantname;}
 
     public void setMerchantName(String merchantname) {this.merchantname = merchantname;}
+    public String getDescription() {return description;}
+    public void setDescription(String description) {this.description = description;}
 }

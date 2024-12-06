@@ -6,85 +6,73 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-body{
+
+body {
 	background: url("../img/bg.jpg") no-repeat;
-	background-size:100% 100%;
+	background-size: cover; /* 背景覆盖整个页面 */
+	font-family: 'Open Sans', sans-serif;
 }
-.regwd{
-	position:fixed;
-	/*居中*/
+
+.regwd {
+	position: fixed;
 	top: 50%;
 	left: 50%;
-    transform: translate(-50%,-50%);
-	width: 500px;
-	min-height: 600px;
-	background: rgba(255, 255, 255, 0.1);
-	display: flex;
-	backdrop-filter: blur(5px);
-	box-shadow: 0 0 25px rgba(0,122,255,0.9);
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.3);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-.form{
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding: 50px;
-}
-.form h2{
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 42px;
-	font-weight: 500;
-	margin-bottom: 30px;
-}
-.form .inputtext input{
-	width: 100%;
-	padding: 10px 20px;
-	background: rgba(255, 255, 255, 0.2);
-	outline: none;
-	border: none;
-	border-radius: 30px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-	font-size: 16px;
-	letter-spacing: 1px;
-	color: #fff;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-	margin-top: 25px;
-}
-.form .inputtext input::placeholder{
-	color: #FFFFFF;
-}
-.form input[type="submit"]{
-	color: #fff;
-	font-size: 18px;
-	width: 100%;
-	margin-top: 40px;
-	font-weight: 900;
-	cursor: pointer;
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 50px;
-	font-weight: 600;
-	height: 40px;
-	box-shadow: 0 5px 15px rgba(0, 122, 255, 0.5);
-
-}
-.forget {
-	margin-top: 6px;
-	color: #fff;
-	letter-spacing: 1px;
+	transform: translate(-50%, -50%);
+	width: 400px; /* 设置注册框宽度 */
+	padding: 40px; /* 设置内边距 */
+	background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+	border-radius: 10px; /* 圆角 */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* 加入阴影效果 */
+	text-align: center; /* 中心对齐 */
 }
 
-.forget a {
-	color: #fff;
-	font-weight: 600;
-	text-decoration: none;
+h2 {
+	font-size: 24px; /* 增加标题字体大小 */
+	color: #333; /* 标题颜色 */
+	margin-bottom: 20px; /* 标题底部间距 */
 }
-#logo5{
+
+input {
+	width: calc(100% - 20px); /* 输入框宽度，减去 padding */
+	height: 36px; /* 增加输入框高度 */
+	margin-bottom: 18px; /* 设置底部间距 */
+	padding: 10px; /* 输入框内边距 */
+	font-size: 16px; /* 输入框字体大小 */
+	color: #333; /* 输入框文本颜色 */
+	background-color: #f8f8f8; /* 输入框背景色 */
+	border: 1px solid #ccc; /* 边框颜色 */
+	border-radius: 4px; /* 边角圆滑 */
+	outline: none; /* 去掉聚焦时的边框 */
+}
+
+input[type="submit"] {
+	font-size: 16px; /* 提交按钮字体大小 */
+	font-weight: bold; /* 增加字体粗细 */
+	color: #fff; /* 按钮文字颜色 */
+	background-color: #4CAF50; /* 按钮背景色 */
+	border: none; /* 去掉边框 */
+	border-radius: 4px; /* 圆角 */
+	cursor: pointer; /* 鼠标指针样式 */
+	height: 40px; /* 提交按钮高度 */
+	transition: background-color 0.3s; /* 背景色过渡效果 */
+}
+
+input[type="submit"]:hover {
+	background-color: #45a049; /* 悬停时背景色变化 */
+}
+
+/* 链接样式 */
+a {
+	font-size: 16px; /* 链接字体大小 */
+	color: #FFD700; /* 链接颜色 */
+	text-decoration: none; /* 去掉下划线 */
+}
+
+a:hover {
+	text-decoration: underline; /* 悬停时添加下划线 */
+}
+
+#logo5 {
 	position: absolute;
-	left: 1%;
-	top: 1%;
+	left: 2%;
 }

@@ -10,7 +10,7 @@
 
 /* 使用flex布局，让内容垂直和水平居中 */
 body {
-    background: url("../img/bg2.jpg") no-repeat;
+    background: url("../img/bg.jpg") no-repeat;
     background-size:cover;
 }
 section {
@@ -246,7 +246,7 @@ section {
     font-weight: 600;
     text-decoration: none;
 }
-#logo6u{
+#logo6{
     position: fixed;
     left: 1%;
     top: 1%;

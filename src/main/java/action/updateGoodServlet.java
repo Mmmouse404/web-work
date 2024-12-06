@@ -27,7 +27,7 @@ public class updateGoodServlet extends HttpServlet {
         String price = req.getParameter("price"); // 价格
         String stock = req.getParameter("stock"); // 库存
         String merchantname = req.getParameter("merchantname"); // 商家名称
-
+        String description = req.getParameter("description");
         // 获取上传的文件
         Part filePart = req.getPart("image"); // "image" 是表单中文件选择框的 name
         String fileName = filePart.getSubmittedFileName(); // 获取文件名
@@ -65,7 +65,7 @@ public class updateGoodServlet extends HttpServlet {
             gl.setPrice(price);
             gl.setStock(stock);
             gl.setMerchantName(merchantname);
-
+            gl.setDescription(description);
             // 执行更新操作
             Goodlist_Use.updateGood(gl); // 调用 Goodlist_Use.UpdateGood 方法
 

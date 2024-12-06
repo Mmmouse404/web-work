@@ -28,6 +28,7 @@
             var goodName = $("#i4").val();
             var goodPrice = $("#i5").val();
             var goodStock = $("#i6").val();
+            var description = $("#i7").val();
             var merchantName = "<%= session.getAttribute("merchantname") %>";
 
             formData.append("image", goodImage);
@@ -35,6 +36,7 @@
             formData.append("goodname", goodName);
             formData.append("price", goodPrice);
             formData.append("stock", goodStock);
+            formData.append("description", description);
             formData.append("merchantname", merchantName);
 
             $.ajax({
@@ -77,7 +79,7 @@
     <jsp:include page="sidebar.jsp" />
     <div class="main-wrap">
         <div class="crumb-wrap">
-            <div class="crumb-list"><a href="manageUser.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">新增商品</span></div>
+            <div class="crumb-list"><a href="manageGood.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">新增商品</span></div>
         </div>
         <div class="result-wrap">
             <form action="#" method="post" id="myform" name="myform">
@@ -119,6 +121,10 @@
                             <tr>
                                 <th><i class="require-red">*</i>商家名称：</th>
                                 <td><input type="text" id="merchantname" value="<%= session.getAttribute("merchantname") %>" size="85" class="common-text" readonly></td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>商品描述：</th>
+                                <td><input type="text" id="i7" size="85" name="" class="common-text" placeholder="例：这是一个很便宜的产品"></td>
                             </tr>
                             <tr>
                                 <th></th>

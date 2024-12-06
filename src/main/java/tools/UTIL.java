@@ -16,7 +16,7 @@ public class UTIL {
                 con = DriverManager.getConnection(
                         "jdbc:mysql://8.134.196.79:3306/shop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true", // 更改为 MySQL URL
                         "user01", // 替换为你的 MySQL 用户名
-                        "user01" // 替换为你的 MySQL 密码
+                        "Heavenhhz520" // 替换为你的 MySQL 密码
                 );
             } catch (SQLException e) {
                 e.printStackTrace();

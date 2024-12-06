@@ -8,6 +8,7 @@ public class Order {
     int number;    //数量
     String price;   //价格总和
     String merchantname;
+    String status;
     public String getAddress() {
         return address;
     }
@@ -60,4 +61,8 @@ public class Order {
     public String getmerchantname() {return merchantname;}
 
     public void setmerchantname(String merchantname) {this.merchantname = merchantname;}
+
+    public String getStatus() {return status;}
+
+    public void setStatus(String status) {this.status = status;}
 }

@@ -10,7 +10,7 @@ em,i,cite,blockquote{font-style:normal}
 ul,ol{list-style:none outside;padding:0}
 h1,h2,h3,h4,h5,h6{font-size:100%}
 textarea{overflow-y:auto;padding:3px}
-a{color:#428bca;text-decoration:none;outline:0}
+a{color:black;text-decoration:none;outline:0}
 a:hover,a:active{color:#2a6496;text-decoration:none;}
 a:focus{outline:0;}
 button::-moz-focus-inner{border:0;padding:0;}
@@ -59,27 +59,28 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{di
 .icon-font { font-family:'icomoon'; speak:none; font-weight:400; font-style:normal; font-variant:normal; text-transform:none; line-height:1; -webkit-font-smoothing:antialiased; }
 .require-red{color:#f60;font-family:serif;margin-right:3px;}
 /* common */
-.topbar-wrap{height:50px;line-height:50px;background:#1A1A1A;}
+.topbar-wrap{height:50px;line-height:50px;background:cornflowerblue;}
 .topbar-logo-wrap{float:left;}
-.topbar-inner{font-size:18px;padding:0 20px;}
+.topbar-inner{font-size:18px;}
 .topbar-logo{float:left;width:150px;text-align:center;}
 .navbar-list{float:left;}
-.top-info-wrap{float:right;}
+.top-info-wrap{float:right;background:cornflowerblue;color:white;font-size:14px;}
 .navbar-list{}
 .navbar-list li{float:left;}
-.navbar-list li a{float:left;margin-right:5px;padding:0 25px;text-shadow:1px 1px 1px #000;}
-.navbar-list li a:hover{background:#343434;}
-.navbar-list li a.on{color:#fff;text-shadow:1px 1px 1px #003;background:#033b70;}
+.navbar-list li a{float:left;margin-right:5px;padding:0 25px;text-shadow:1px 1px 1px cornflowerblue;}
+.navbar-list li a:hover{background: #5b90f3}
+.navbar-list li a.on{color:white;}
 .top-info-list li{float:left;}
-.top-info-list li a{float:left;margin-left:5px;padding:0 20px;display:inline;zoom:1;}
-.top-info-list li a:hover{background:#343434;}
+.top-info-list li a{float:left;margin-left:5px;padding:0 20px;display:inline;text-shadow:1px 1px 1px cornflowerblue;zoom:1;}
+.top-info-list li a:hover{background: #518cef;}
+.top-info-list li a.on{color:white;}
 .btn{
     display:inline-block;
     *display:inline;
-    padding:4px 12px;
+    padding:2px 8px;
     margin-bottom:0;
     *margin-left:.3em;
-    font-size:14px;
+    font-size:12px;
     line-height:20px;
     color:#333333;
     text-align:center;
@@ -89,11 +90,6 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{di
     cursor:pointer;
     background-color:#f5f5f5;
     *background-color:#e6e6e6;
-    background-image:-moz-linear-gradient(top,#ffffff,#e6e6e6);
-    background-image:-webkit-gradient(linear,0 0,0 100%,from(#ffffff),to(#e6e6e6));
-    background-image:-webkit-linear-gradient(top,#ffffff,#e6e6e6);
-    background-image:-o-linear-gradient(top,#ffffff,#e6e6e6);
-    background-image:linear-gradient(to bottom,#ffffff,#e6e6e6);
     background-repeat:repeat-x;
     border:1px solid #bbbbbb;
     *border:0;
@@ -135,12 +131,38 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{di
 textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input{background-color:#ffffff;border:1px solid #cccccc;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;-moz-transition:border linear 0.2s,box-shadow linear 0.2s;-o-transition:border linear 0.2s,box-shadow linear 0.2s;transition:border linear 0.2s,box-shadow linear 0.2s;}
 textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="time"]:focus,input[type="week"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="color"]:focus,.uneditable-input:focus{border-color:rgba(82,168,236,0.8);outline:0;outline:thin dotted \9;/* IE6-9 */
 -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);}
-.insert-tab{border-collapse:collapse;border:1px solid #eee;}
+.insert-tab{border-collapse:collapse;border:1px solid #eee;width:100%;table-layout:fixed;}
 .insert-tab th,.insert-tab td{border:1px solid #eee;}
-.insert-tab tr{line-height:40px;}
-.insert-tab th{text-align:right;font-weight:normal;padding-right:10px;font-size:14px;}
-.insert-tab td{text-align:left;padding-left:10px;}
+.insert-tab tr{line-height:5px;}
+.insert-tab th{text-align:center;font-weight:normal;padding:5px;font-size:12px;}
+.insert-tab td{text-align:left;padding-left:5px;}
 .list-page{padding:20px 0;text-align:center;}
 .list-page a{margin:0 5px;padding:2px 7px;border:1px solid #ccc;background:#f3f3f3;}
 .list-page a:hover{background:#e4e4e4;border:1px solid #908f8f;}
 .list-page .current{margin:0 5px;padding:2px 7px;background:#f60;border:1px solid #fe8101;color:#fff;}
+.back-button {
+    background-color: blue; /* 蓝色背景 */
+    color: white; /* 白色字体 */
+    border: none; /* 去掉边框 */
+    padding: 10px 15px; /* 内边距 */
+    margin-left: 10px; /* 与logo间距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    border-radius: 5px; /* 圆角 */
+}
+.status-pending {
+    background-color: yellow; /* 未发货状态为黄色 */
+}
+
+.status-shipped {
+    background-color: lightblue; /* 已发货状态为蓝色 */
+}
+
+.status-delivered {
+    background-color: lightgreen; /* 已收货状态为绿色 */
+}
+
+td {
+    padding: 10px; /* 添加单元格内边距 */
+    text-align: center; /* 内容居中对齐 */
+    vertical-align: middle; /* 垂直居中对齐 */
+}

@@ -14,10 +14,10 @@ public class User_Use {
     private static int number2;
 
 
-    public static void in(String loginname,String loginid,String loginpass,double money) throws SQLException {  //数据库的插入功能
+    public static void in(String loginname,String loginid,String loginpass,double money,String email) throws SQLException {  //数据库的插入功能
         Connection con= UTIL.getCon();//建立 连接
-        String sql= "insert into users (NAME,ID,PASSWORD,MONEY) " +
-                "values(?,?,?,?)";
+        String sql= "insert into users (NAME,ID,PASSWORD,MONEY,EMAIL) " +
+                "values(?,?,?,?,?)";
         //设置变量，用?占位符  等下会传入值过来
         PreparedStatement gg=con.prepareStatement(sql);
         //  要在执行前赋值 第一个? 序号是1
@@ -25,6 +25,7 @@ public class User_Use {
         gg.setString(2,loginid);
         gg.setString(3,loginpass);
         gg.setDouble(4,money);
+        gg.setString(5,email);
         gg.executeUpdate();//执行,返回结果是操作了几条数据
 
     }
@@ -115,6 +116,8 @@ public class User_Use {
                 uu.setId(RS.getInt("ID"));
                 uu.setName(RS.getString("NAME"));
                 uu.setPassword(RS.getString("PASSWORD"));
+                uu.setMoney(RS.getDouble("MONEY"));
+                uu.setEmail(RS.getString("EMAIL"));
                 arr.add(uu);
             }
         } catch (SQLException e) {
@@ -182,6 +185,68 @@ public class User_Use {
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setDouble(1, newBalance); // 更新新的余额
             ps.setString(2, username); // 设置用户名
+            ps.executeUpdate(); // 执行更新操作
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+    }
+    public static void deleteUser(String userId) throws SQLException {
+        Connection con = UTIL.getCon();
+        String sql = "DELETE FROM users WHERE ID = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, userId);
+        ps.executeUpdate(); // 执行删除操作
+    }
+    public static String getUserEmail(String username) throws SQLException {
+        String sql = "SELECT EMAIL FROM users WHERE NAME = ?";
+        String email = null;
+
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                email = rs.getString("EMAIL");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+
+        return email; // 返回用户邮箱
+    }
+    public static void updateUserEmail(String username, String email) throws SQLException {
+        String sql = "UPDATE users SET EMAIL = ? WHERE NAME = ?";
+
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email); // 更新新的邮箱
+            ps.setString(2, username); // 设置用户名
+            ps.executeUpdate(); // 执行更新操作
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+    }
+    public static void updateUserPassword(String username, String newPassword) throws SQLException {
+        String sql = "UPDATE users SET PASSWORD = ? WHERE NAME = ?";
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newPassword); // 更新新的密码
+            ps.setString(2, username); // 设置用户名
+            ps.executeUpdate(); // 执行更新操作
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 抛出异常以便进一步处理
+        }
+    }
+    public static void updateUserName(String oldUsername, String newUsername) throws SQLException {
+        String sql = "UPDATE users SET NAME = ? WHERE NAME = ?";
+        try (Connection con = UTIL.getCon();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newUsername); // 更新的新用户名
+            ps.setString(2, oldUsername); // 旧用户名
             ps.executeUpdate(); // 执行更新操作
         } catch (SQLException e) {
             e.printStackTrace();

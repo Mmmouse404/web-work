@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4" />
+<module version="4">
+  <component name="FacetManager">
+    <facet type="JRebel" name="JRebel">
+      <configuration>
+        <option name="ideModuleStorage">
+          <map>
+            <entry key="com.zeroturnaround.jrebel.FormatVersion" value="7.0.0" />
+            <entry key="com.zeroturnaround.jrebel.remoting.ModuleRemoteServerPreviousEnabledSelection" value="instance" />
+            <entry key="com.zeroturnaround.jrebel.remoting.ModuleRemoteServerSelection" value="off" />
+            <entry key="jrebelEnabled" value="false" />
+            <entry key="lastExternalPluginCheckTime" value="1733280160671" />
+            <entry key="rebelXmlGenerationInvariantToken" value="PGFwcGxpY2F0aW9uIGdlbmVyYXRlZC1ieT0iaW50ZWxsaWoiPjxpZD5qYXZhd2ViX21vdXNlPC9pZD48Y2xhc3NwYXRoPjxkaXIgbmFtZT0iRTovQ29kZS9KYXZhX0NvZGUvd2ViLXdvcmsvdGFyZ2V0L2NsYXNzZXMiPjwvZGlyPjwvY2xhc3NwYXRoPjx3ZWI+PGxpbmsgdGFyZ2V0PSIvIj48ZGlyIG5hbWU9IkU6L0NvZGUvSmF2YV9Db2RlL3dlYi13b3JrL3NyYy9tYWluL3dlYmFwcCI+PC9kaXI+PC9saW5rPjwvd2ViPjwvYXBwbGljYXRpb24+" />
+          </map>
+        </option>
+        <option name="version" value="29" />
+      </configuration>
+    </facet>
+  </component>
+</module>

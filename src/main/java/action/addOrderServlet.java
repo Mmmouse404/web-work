@@ -62,6 +62,7 @@ public class addOrderServlet extends HttpServlet {
                 String address = itemObj.getString("address");
                 String merchantname = itemObj.getString("merchantname");
                 String price = itemObj.getString("price");
+                String status="未发货";
                 // 创建订单对象
                 Order order = new Order();
                 order.setGoodName(goodname);
@@ -70,7 +71,7 @@ public class addOrderServlet extends HttpServlet {
                 order.setNumber(number);
                 order.setPrice(price);
                 order.setmerchantname(merchantname);
-
+                order.setStatus(status);
                 Order_Use.insertOrder(order); // 插入订单处理
                 Goodlist_Use.updateStock(goodname, number); // 更新库存
             }

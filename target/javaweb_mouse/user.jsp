@@ -39,7 +39,7 @@
 <%--    <div class="color"></div>--%>
 <%--    <div class="color"></div>--%>
     <div  class="bt">
-        超超小卖部503分店
+        帽子老鼠的小店
     </div>
 <%--    圆和登录框层--%>
     <div class="box">

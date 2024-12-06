@@ -4,6 +4,8 @@
 <%@ page import="dao.Goodlist" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Objects" %>
 <jsp:include page="increaseMoney.jsp" />
 <%
     // 检查用户是否已登录
@@ -18,10 +20,18 @@
             throw new RuntimeException(e);
         }
     }
+    // 搜索功能
+    String searchSort = request.getParameter("search-sort");
+    String keywords = request.getParameter("keywords");
 %>
 <html>
 <head>
     <title>商品详情</title>
+    <style>
+        body {
+            background: url("img/bg3.jpg") repeat;
+        }
+    </style>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/Shop_cat.css" rel="stylesheet">
     <script src="js/jquery-3.4.1.min.js"></script>
@@ -91,6 +101,7 @@
             var price = $("#good_total").text(); // 商品总价
             var merchantName = $("#merchantname").text(); // 商家名称
             var goodId =  $("#good_id").text(); // 商品ID
+            var description = $("#description").text(); // 商品描述
             // 验证输入信息是否合法
             if (!goodname || !username || !address || !number || !price || !merchantName) {
                 alert("请确保所有信息都填写正确！");
@@ -103,7 +114,8 @@
                 + "&number=" + encodeURIComponent(number)
                 + "&price=" + encodeURIComponent(price)
                 + "&merchantname=" + encodeURIComponent(merchantName) // 注意大小写
-                + "&goodId=" + encodeURIComponent(goodId);
+                + "&goodId=" + encodeURIComponent(goodId)
+                + "&description=" + encodeURIComponent(description);
             // 发送请求到 addToCart Servlet
             $.ajax({
                 url: "addToCart", // 后端处理的 URL
@@ -131,7 +143,7 @@
             var price = $("#good_total").text(); // 总价
             var merchantname = "<%=session.getAttribute("merchantname")%>"; // 商家名称
             var goodId =  $("#good_id").text(); // 商品ID
-
+            var description = $("#description").text(); // 商品描述
             var param = "goodname=" + encodeURIComponent(goodname)
                 + "&username=" + encodeURIComponent(username)
                 + "&number=" + encodeURIComponent(number)
@@ -155,20 +167,43 @@
 </head>
 <body>
 <%-- 小卖部顶部页面 --%>
-<div class="main_head">
-    <div class="logo"><img src="img/logo3.png"></div>
-    <div class="top_up">欢迎您：<%= username != null ? username : "游客" %>
+<div class="main_head" style="display: flex; align-items: center; justify-content: flex-start;">
+    <div class="logo" style="position: absolute;width: 50px;height: 50px;"><img src="img/mouse.png"></div>
+    <!-- 搜索表单 -->
+    <div class="search-wrap" style="left: 20%;top: 8%; position: absolute;">
+        <form action="allShop.jsp" method="get"> <!-- 提交查询 -->
+            <label>选择分类:</label>
+            <select name="search-sort">
+                <option value="">全部</option>
+                <%
+                    ArrayList<String> kinds = Goodlist_Use.getAllKinds(); // 从数据库获取所有分类
+                    for (String kind : kinds) {
+                %>
+                <option value="<%= kind %>" <%= searchSort != null && searchSort.equals(kind) ? "selected" : "" %>><%= kind %></option>
+                <%
+                    }
+                %>
+            </select>
+
+            <label >关键字:</label>
+            <input type="text" name="keywords" placeholder="输入关键字" value="<%= keywords != null ? keywords : "" %>">
+            <input type="submit" value="查询">
+        </form>
+    </div>
+    <div class="top_up" style="top: 99%; position: absolute;">欢迎您：<%= username != null ? username : "游客" %>
         <% if (username != null) { %>
         | 账户余额：<%= userMoney %>元
         <input type="button" value="增加金额" id="increaseMoneyBtn" onclick="showIncreaseMoneyDialog()"/> <!-- 调用函数显示对话框 -->
 
         <% } %>
     </div>
+
     <div class="navigation">
-        <a href="cart.jsp">购物车</a>
-        <a href="myOrders.jsp">订单</a>
+        <a href="userProfile.jsp">个人中心</a>
         <a href="mainFrame.jsp">推荐商品</a>
         <a href="allShop.jsp">全部商品</a>
+        <a href="cart.jsp">购物车</a>
+        <a href="myOrders.jsp">订单</a>
         <% if (username != null) { %>
         <a href="logout">退出</a> <!-- 退出登录链接 -->
         <% } else { %>
@@ -196,7 +231,7 @@
 <div class="main_down">
     <div class="mainwdow">
         <div class="picture">
-            <img src="<%=item.getImage()%>" width="400" height="400">
+            <img src="<%=item.getImage()%>" alt="商品图片"> <!-- 增大图片 -->
         </div>
         <div class="mas_table">
             <table align="left">
@@ -206,38 +241,54 @@
                             <h1 id="tt"><%=item.getGoodName()%></h1>
                         </div>
                     </td>
-
                 </tr>
                 <tr>
-                    <td>商家名称：<h2 id="merchantname"><%=item.getMerchantName()%></h2> <!-- 显示商家名称 --></td>
-                    <td>商家编号：<h2 id="good_id"><%=item.getId()%></h2> <!-- 显示商家名称 --></td>
-                    <td>单价：<i class="goods_price" id="goods_price"><%=item.getPrice()%></i>元</td>
-                    <td>库存：<span id="stock"><%=item.getStock()%></span>件</td> <!-- 显示库存 -->
-                </tr>
-                <tr>
-                    <td>
-                        <div class="goods_num_wrap">
-                            <span id="i1">-</span><input type="text" value="1" class="goods_num" id="number"><span id="i2">+</span>
+                    <td colspan="4" style="padding: 0;">
+                        <div class="info-container">
+                            <div class="info-item">商家名称：<i id="merchantname"><%=item.getMerchantName()%></i></div>
+                            <div class="info-item">商家编号：<i id="good_id"><%=item.getId()%></i></div>
+                            <div class="info-item">单价：<i class="goods_price" id="goods_price"><%=item.getPrice()%></i>元</div>
+                            <div class="info-item">库存：<span id="stock"><%=item.getStock()%></span>件</div>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>总价：<i class="good_total" id="good_total">--</i>元</td>
+                    <td>
+                        <div class="product-info">
+                            商品描述：
+                            <p id="description" style="display: inline-block; ">
+                                <%=!Objects.equals(item.getDescription(), "null") ? item.getDescription() : "这个商家很懒，什么都没有留下" %>
+                            </p>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="cataddress">
+                        <div class="goods_num_wrap">
+                            购买数量：<span id="i1" style="text-align: center;">-</span>
+                            <input type="text" value="1" class="goods_num" id="number">
+                            <span id="i2" style="text-align: center;">+</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>总价：<i class="good_total" id="good_total"><%=item.getPrice()%></i>元</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="address-info">
                             地址：<input type="text" placeholder="请填写地址，例：6#505" id="dz">
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="button" value="购买" id="gbtn" onclick="insertindent()">
-                        <input type="button" value="加入购物车" id="jgwc" onclick="addToCart()"> <!-- 添加到购物车 -->
-                        </td>
+                        <div class="button-container">
+                            <input type="button" value="加入购物车"  class="add-cart-button" onclick="addToCart()" /> <!-- 添加到购物车 -->
+                            <input type="button" value="返回"  class="add-cart-button" onclick="history.back()" /> <!-- 返回按钮 -->
+                        </div>
+                    </td>
                 </tr>
-
             </table>
         </div>
     </div>
